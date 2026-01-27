@@ -41,9 +41,14 @@ const MainLayout = () => {
                                         <Link to="/admin/dashboard" className="text-gray-600 hover:text-blue-600 transition font-medium">Dashboard</Link>
                                     )}
                                     {user.roles?.includes('ROLE_CUSTOMER') && (
-                                        <Link to="/customer/rides" className={`text-gray-600 hover:text-blue-600 transition font-medium ${location.pathname === '/customer/rides' ? 'text-blue-600' : ''}`}>
-                                            My Rides
-                                        </Link>
+                                        <>
+                                            <Link to="/customer/rides" className={`text-gray-600 hover:text-blue-600 transition font-medium ${location.pathname === '/customer/rides' ? 'text-blue-600' : ''}`}>
+                                                My Rides
+                                            </Link>
+                                            <Link to="/transactions" className={`text-gray-600 hover:text-blue-600 transition font-medium ${location.pathname === '/transactions' ? 'text-blue-600' : ''}`}>
+                                                Transactions
+                                            </Link>
+                                        </>
                                     )}
 
                                     <span className="text-sm font-semibold text-gray-700">
@@ -88,7 +93,10 @@ const MainLayout = () => {
                             <Link to="/bikes" className="block text-gray-600 hover:text-blue-600 py-2">Browse Bikes</Link>
 
                             {user && user.roles?.includes('ROLE_CUSTOMER') && (
-                                <Link to="/customer/rides" className="block text-gray-600 hover:text-blue-600 py-2">My Rides</Link>
+                                <>
+                                    <Link to="/customer/rides" className="block text-gray-600 hover:text-blue-600 py-2">My Rides</Link>
+                                    <Link to="/transactions" className="block text-gray-600 hover:text-blue-600 py-2">Transactions</Link>
+                                </>
                             )}
 
                             {user ? (

@@ -74,9 +74,45 @@ const MyRidesPage = () => {
                                             </td>
                                             <td className="p-4 font-bold text-gray-900">₹{b.totalAmount}</td>
                                             <td className="p-4">
-                                                <span className={`px-2 py-1 rounded text-xs font-bold ${b.bookingStatus === 'COMPLETED' ? 'bg-green-100 text-green-700' : b.bookingStatus === 'BOOKED' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'}`}>
-                                                    {b.bookingStatus}
-                                                </span>
+                                                <div className="flex flex-col gap-2">
+                                                    <span className={`px-2 py-1 rounded text-xs font-bold w-fit ${b.bookingStatus === 'COMPLETED' ? 'bg-green-100 text-green-700' :
+                                                            b.bookingStatus === 'BOOKED' ? 'bg-blue-100 text-blue-700' :
+                                                                b.bookingStatus === 'CANCELLED' ? 'bg-red-100 text-red-700' :
+                                                                    'bg-gray-100 text-gray-700'
+                                                        }`}>
+                                                        {b.bookingStatus}
+                                                    </span>
+
+                                                    {/* Cancel Button Logic */}
+                                                    {b.bookingStatus === 'BOOKED' && (
+                                                        (() => {
+                                                            const pickup = new Date(b.pickupDateTime);
+                                                            const now = new Date();
+                                                            const diffHours = (pickup - now) / (1000 * 60 * 60);
+
+                                                            if (diffHours >= 24) {
+                                                                return (
+                                                                    <button
+                                                                        onClick={async () => {
+                                                                            if (window.confirm("Are you sure you want to cancel this booking? (Refund policies apply)")) {
+                                                                                try {
+                                                                                    await api.post(`/bookings/${b.id}/cancel`);
+                                                                                    fetchMyBookings(); // Refresh list
+                                                                                } catch (err) {
+                                                                                    alert(err.response?.data?.message || "Failed to cancel booking");
+                                                                                }
+                                                                            }
+                                                                        }}
+                                                                        className="text-xs text-red-600 hover:text-red-800 font-medium underline text-left"
+                                                                    >
+                                                                        Cancel Booking
+                                                                    </button>
+                                                                );
+                                                            }
+                                                            return null;
+                                                        })()
+                                                    )}
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}

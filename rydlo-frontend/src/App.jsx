@@ -10,6 +10,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import BrowseBikesPage from './pages/BrowseBikesPage';
 import MyRidesPage from './pages/MyRidesPage';
 import BikeDetailsPage from './pages/BikeDetailsPage';
+import TransactionsPage from './pages/TransactionsPage';
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/customer/dashboard" element={<BrowseBikesPage />} /> {/* Default to Browse */}
                     <Route path="/customer/browse" element={<BrowseBikesPage />} />
                     <Route path="/customer/rides" element={<MyRidesPage />} />
+                    <Route path="/transactions" element={<TransactionsPage />} />
 
                     {/* Protected Owner Routes */}
                     <Route path="/owner/dashboard" element={<OwnerDashboard />} />

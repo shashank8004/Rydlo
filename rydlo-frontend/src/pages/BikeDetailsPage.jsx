@@ -97,7 +97,11 @@ const BikeDetailsPage = () => {
         }
     };
 
-    const handleBooking = async () => {
+    // Payment State
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
+    const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
+    const initiateBooking = () => {
         if (!user) {
             navigate('/login');
             return;
@@ -113,25 +117,40 @@ const BikeDetailsPage = () => {
             return;
         }
 
+        setShowPaymentModal(true);
+    };
+
+    const handlePaymentAndBooking = async () => {
+        setIsProcessingPayment(true);
+
+        // Simulate Payment Gateway Delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        const simulatedPaymentId = "pay_" + Math.random().toString(36).substr(2, 9);
+
         setSubmitting(true);
         try {
             const bookingRequest = {
                 bikeId: id,
-                customerId: user.id, // Ensure user.id is set in AuthContext
+                customerId: user.id,
                 pickupDate,
                 pickupTime: pickupTime + ":00",
                 dropOffDate,
                 dropOffTime: dropOffTime + ":00",
-                initialKm: bike.usedKm || 0 // Assuming bike details has usedKm, or pass default
+                initialKm: bike.usedKm || 0,
+                paymentId: simulatedPaymentId
             };
 
             await api.post('/bookings', bookingRequest);
+            setShowPaymentModal(false);
             setBookingSuccess(true);
         } catch (err) {
             console.error("Booking error:", err);
             setPriceError('Booking failed. Please try again.');
+            setShowPaymentModal(false);
         } finally {
             setSubmitting(false);
+            setIsProcessingPayment(false);
         }
     };
 
@@ -322,11 +341,11 @@ const BikeDetailsPage = () => {
                                         </div>
 
                                         <button
-                                            onClick={handleBooking}
+                                            onClick={initiateBooking}
                                             disabled={submitting}
                                             className="w-full py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition shadow-lg mt-4 flex justify-center items-center gap-2"
                                         >
-                                            {submitting ? <Loader2 className="animate-spin w-5 h-5" /> : 'Confirm Booking'}
+                                            Proceed to Pay ₹{priceDetails.totalPayable}
                                         </button>
                                         <button
                                             onClick={() => setPriceDetails(null)}
@@ -340,6 +359,76 @@ const BikeDetailsPage = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Payment Simulation Modal */}
+                {showPaymentModal && (
+                    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                        <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 animate-in fade-in zoom-in duration-200">
+                            <div className="flex justify-between items-center mb-6">
+                                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                                    <ShieldCheck className="text-green-600" /> Secure Payment
+                                </h2>
+                                <button onClick={() => setShowPaymentModal(false)} className="text-gray-400 hover:text-gray-600">
+                                    ✕
+                                </button>
+                            </div>
+
+                            <div className="space-y-4 mb-6">
+                                <div className="flex justify-between py-3 border-b border-gray-100">
+                                    <span className="text-gray-600">Total Amount</span>
+                                    <span className="text-xl font-bold text-gray-900">₹{priceDetails?.totalPayable}</span>
+                                </div>
+
+                                {/* Payment Method Selection */}
+                                <div className="grid grid-cols-2 gap-3 mb-4">
+                                    <button className="px-4 py-2 border border-blue-500 bg-blue-50 text-blue-700 font-semibold rounded-lg">
+                                        Card
+                                    </button>
+                                    <button className="px-4 py-2 border border-gray-200 text-gray-600 font-medium rounded-lg hover:border-blue-300">
+                                        UPI
+                                    </button>
+                                </div>
+
+                                {/* Mock Inputs */}
+                                <div className="space-y-3">
+                                    <div>
+                                        <label className="block text-xs font-semibold text-gray-500 mb-1">CARD NUMBER</label>
+                                        <input type="text" placeholder="0000 0000 0000 0000" className="w-full p-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-blue-500" />
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <div className="w-1/2">
+                                            <label className="block text-xs font-semibold text-gray-500 mb-1">EXPIRY</label>
+                                            <input type="text" placeholder="MM/YY" className="w-full p-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-blue-500" />
+                                        </div>
+                                        <div className="w-1/2">
+                                            <label className="block text-xs font-semibold text-gray-500 mb-1">CVV</label>
+                                            <input type="text" placeholder="123" className="w-full p-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-blue-500" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-blue-50 p-3 rounded-lg text-xs text-blue-800">
+                                    <p className="font-semibold mb-0.5">Test Mode Enabled</p>
+                                    <p>Enter any dummy card details. No actual money will be deducted.</p>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={handlePaymentAndBooking}
+                                disabled={isProcessingPayment}
+                                className="w-full py-3.5 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-lg flex justify-center items-center gap-2"
+                            >
+                                {isProcessingPayment ? (
+                                    <>
+                                        <Loader2 className="animate-spin w-5 h-5" /> Processing...
+                                    </>
+                                ) : (
+                                    `Pay ₹${priceDetails?.totalPayable}`
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
