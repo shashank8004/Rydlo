@@ -1,6 +1,5 @@
 package com.rydlo.dto;
 
-import com.rydlo.entities.Address;
 import com.rydlo.entities.Role;
 
 import jakarta.validation.constraints.NotBlank;
@@ -17,13 +16,17 @@ import lombok.ToString;
 public class UserRegDTO {
 	
 	
-	@NotBlank(message=" Name is mandatory")
-	private String name;
+	@NotBlank(message="First Name is mandatory")
+	private String firstName;
+
+	@NotBlank(message="Last Name is mandatory")
+	private String lastName;
 	
 	@NotBlank(message=" Email is mandatory")
 	private String email;
 	
 	@NotBlank(message=" Phone is mandatory")
+	
 	private String phone;
 	
 	@NotBlank(message=" Password is mandatory")
@@ -33,8 +36,9 @@ public class UserRegDTO {
 	@NotNull(message=" Role is mandatory")
 	private Role role;
 
-	@NotNull(message=" Address is mandatory")
-	private Address address;
+	
+	
+	
 
 
 }

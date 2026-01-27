@@ -2,6 +2,7 @@ package com.rydlo.entities;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -15,13 +16,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @AttributeOverride(name = "id",column = @Column(name="owner_id"))
-@ToString(callSuper = true,exclude = "myUser")
+
+@ToString(callSuper = true,exclude = "user")
+
 public class Owner extends BaseEntity {
     
-	@Column(name = "shop_name",length =30)
-	private String shopName;
+	@Column(name ="company_name")
+	private String companyName;
+
+    @Column(name="gst_number",unique = true)
+    private String gstNumber;
+
+    @Embedded
+    private Address address;
 	
+    
 	@OneToOne
 	@JoinColumn(name = "user_id",nullable = false)
-	private User myUser;
+	private User user;
 }

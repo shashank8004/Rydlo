@@ -2,5 +2,5 @@ package com.rydlo.entities;
 
 public enum TransactionStatus {
 
-	SUCCESFULL,FAILED,PENDING
+	INITIATED,SUCCESSFUL,FAILED,PENDING
 }

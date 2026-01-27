@@ -1,15 +1,22 @@
 package com.rydlo.entities;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Embeddable
+
+
+@Table(name="pickup_location")
+@AttributeOverride(name = "id",column = @Column(name="pickup_location_id"))
+@ToString(callSuper = true,exclude = {"bikeDetails"})
 @Getter
 @Setter
-@ToString
-public class PickupLocation {
+@Entity
+public class PickupLocation extends BaseEntity {
 
 	
 	
@@ -19,6 +26,9 @@ public class PickupLocation {
 	    private String city;
 	    private String state;
 	    private String pincode;
+	    
+	   
+	    
 	
 
 }

@@ -1,5 +1,5 @@
 package com.rydlo.entities;
 
-public enum VehicleType {
+public enum BikeType {
  ELECTRIC,SCOOTY,SPORTS
 }
