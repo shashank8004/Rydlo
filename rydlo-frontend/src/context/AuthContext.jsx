@@ -11,18 +11,25 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         // Check if user is logged in on mount
         const token = localStorage.getItem('token');
+        const storedUser = localStorage.getItem('user');
+
         if (token) {
             try {
-                const decoded = jwtDecode(token);
-                // Assuming your JWT has 'sub' (email) and 'roles'
-                setUser({
-                    email: decoded.sub,
-                    roles: decoded.roles, // or decoded.authorities depending on your JWT structure
-                    token: token
-                });
+                if (storedUser) {
+                    setUser(JSON.parse(storedUser));
+                } else {
+                    // Fallback to decoding token if user data missing
+                    const decoded = jwtDecode(token);
+                    setUser({
+                        email: decoded.sub,
+                        roles: decoded.roles,
+                        token: token
+                    });
+                }
             } catch (error) {
                 console.error("Invalid token on startup", error);
                 localStorage.removeItem('token');
+                localStorage.removeItem('user');
             }
         }
         setLoading(false);
@@ -31,17 +38,22 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const response = await api.post('/auth/login', { email, password });
-            const { token } = response.data; // Adjust based on your AuthController response structure
+            const { token, userId, firstName, lastName, role } = response.data;
+
+            const userData = {
+                id: userId,
+                email,
+                firstName,
+                lastName,
+                roles: [role],
+                token
+            };
 
             localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(userData));
 
-            const decoded = jwtDecode(token);
-            setUser({
-                email: decoded.sub,
-                roles: decoded.roles,
-                token: token
-            });
-            return true;
+            setUser(userData);
+            return userData; // Return the full user object
         } catch (error) {
             console.error("Login failed", error);
             throw error;
@@ -55,6 +67,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         setUser(null);
     };
 

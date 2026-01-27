@@ -34,11 +34,8 @@ const LandingPage = () => {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="flex flex-col sm:flex-row items-center justify-center gap-4"
                         >
-                            <Link to="/register" className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
-                                Start Riding <ArrowRight className="w-5 h-5" />
-                            </Link>
-                            <Link to="/bikes" className="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-full font-bold text-lg hover:bg-gray-50 hover:border-gray-300 transition-all duration-300">
-                                Browse Bikes
+                            <Link to="/customer/browse" className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg shadow-lg hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                                Browse Bikes <ArrowRight className="w-5 h-5" />
                             </Link>
                         </motion.div>
                     </div>

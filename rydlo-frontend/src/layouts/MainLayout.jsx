@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Menu, X, User, LogOut } from 'lucide-react';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { useState } from 'react';
 const MainLayout = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleLogout = () => {
@@ -28,12 +29,25 @@ const MainLayout = () => {
                         {/* Desktop Menu */}
                         <div className="hidden md:flex items-center space-x-8">
                             <Link to="/" className="text-gray-600 hover:text-blue-600 transition font-medium">Home</Link>
-                            <Link to="/bikes" className="text-gray-600 hover:text-blue-600 transition font-medium">Bikes</Link>
+                            <Link to="/bikes" className="text-gray-600 hover:text-blue-600 transition font-medium">Browse Bikes</Link>
 
                             {user ? (
                                 <div className="flex items-center space-x-4">
+                                    {/* Dashboard Link based on Role */}
+                                    {user.roles?.includes('ROLE_OWNER') && (
+                                        <Link to="/owner/dashboard" className="text-gray-600 hover:text-blue-600 transition font-medium">Dashboard</Link>
+                                    )}
+                                    {user.roles?.includes('ROLE_ADMIN') && (
+                                        <Link to="/admin/dashboard" className="text-gray-600 hover:text-blue-600 transition font-medium">Dashboard</Link>
+                                    )}
+                                    {user.roles?.includes('ROLE_CUSTOMER') && (
+                                        <Link to="/customer/rides" className={`text-gray-600 hover:text-blue-600 transition font-medium ${location.pathname === '/customer/rides' ? 'text-blue-600' : ''}`}>
+                                            My Rides
+                                        </Link>
+                                    )}
+
                                     <span className="text-sm font-semibold text-gray-700">
-                                        Hello, {user.email?.split('@')[0]}
+                                        Hello, {user.firstName || user.email?.split('@')[0]}
                                     </span>
                                     <button
                                         onClick={handleLogout}
@@ -71,7 +85,12 @@ const MainLayout = () => {
                     <div className="md:hidden bg-white border-b border-gray-100 pb-4">
                         <div className="px-4 space-y-3 pt-2">
                             <Link to="/" className="block text-gray-600 hover:text-blue-600 py-2">Home</Link>
-                            <Link to="/bikes" className="block text-gray-600 hover:text-blue-600 py-2">Bikes</Link>
+                            <Link to="/bikes" className="block text-gray-600 hover:text-blue-600 py-2">Browse Bikes</Link>
+
+                            {user && user.roles?.includes('ROLE_CUSTOMER') && (
+                                <Link to="/customer/rides" className="block text-gray-600 hover:text-blue-600 py-2">My Rides</Link>
+                            )}
+
                             {user ? (
                                 <button onClick={handleLogout} className="block w-full text-left text-red-600 py-2">Logout</button>
                             ) : (

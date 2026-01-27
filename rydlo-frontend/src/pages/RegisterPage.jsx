@@ -9,7 +9,7 @@ const RegisterPage = () => {
     const [step, setStep] = useState(1); // 1: User Reg, 2: Profile Completion
 
     // Step 1 Data
-    const [userData, setUserData] = useState({ name: '', email: '', password: '', phone: '' });
+    const [userData, setUserData] = useState({ firstName: '', lastName: '', email: '', password: '', phone: '' });
 
     // Step 2 Data
     const [profileData, setProfileData] = useState({
@@ -166,11 +166,20 @@ const RegisterPage = () => {
                                 </div>
                             </div>
 
-                            <div>
-                                <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">Full Name</label>
-                                <div className="relative">
-                                    <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                                    <input name="name" type="text" required onChange={handleUserChange} className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="John Doe" />
+                            <div className="flex gap-4">
+                                <div className="w-1/2">
+                                    <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">First Name</label>
+                                    <div className="relative">
+                                        <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                                        <input name="firstName" type="text" required onChange={handleUserChange} className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="John" />
+                                    </div>
+                                </div>
+                                <div className="w-1/2">
+                                    <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">Last Name</label>
+                                    <div className="relative">
+                                        <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                                        <input name="lastName" type="text" required onChange={handleUserChange} className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Doe" />
+                                    </div>
                                 </div>
                             </div>
 

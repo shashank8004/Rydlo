@@ -16,8 +16,16 @@ const LoginPage = () => {
         setError('');
         setLoading(true);
         try {
-            await login(email, password);
-            navigate('/'); // Redirect to home/dashboard
+            const loggedInUser = await login(email, password);
+
+            // Check roles immediately from the returned user object
+            if (loggedInUser?.roles?.includes('ROLE_OWNER')) {
+                navigate('/owner/dashboard');
+            } else if (loggedInUser?.roles?.includes('ROLE_ADMIN')) {
+                navigate('/admin/dashboard');
+            } else {
+                navigate('/');
+            }
         } catch (err) {
             setError('Invalid credentials. Please try again.');
         } finally {
