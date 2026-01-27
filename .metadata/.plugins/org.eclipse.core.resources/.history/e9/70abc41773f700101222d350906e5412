@@ -1,0 +1,31 @@
+package com.rydlo.dto;
+
+import com.rydlo.entities.Address;
+import com.rydlo.entities.Role;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
+
+public class UserRegDTO {
+	
+	@NotBlank(message = " Name is mandatory ")
+	private String name;
+	
+	@NotBlank(message = " Email is mandatory ")
+	private String email;
+	
+	@NotBlank(message = " Phone is mandatory ")
+	private String phone;
+	
+	@NotBlank(message = " Password is mandatory ")
+	private String password;
+	
+	
+	private Role role;
+	
+	private Address adress;
+
+}

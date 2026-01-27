@@ -1,0 +1,5 @@
+package com.rydlo.dto;
+
+public class UserRegDTO {
+
+}

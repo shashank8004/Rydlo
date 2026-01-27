@@ -1,0 +1,15 @@
+package com.rydlo.service;
+
+import java.util.List;
+
+import com.rydlo.entities.User;
+
+public class AdminServiceIMPL implements AdminService {
+
+	@Override
+	public List<User> getAllUsers(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

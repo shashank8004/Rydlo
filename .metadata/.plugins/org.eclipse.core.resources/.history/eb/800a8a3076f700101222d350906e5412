@@ -1,0 +1,31 @@
+package com.rydlo.dto;
+
+import com.rydlo.entities.Address;
+import com.rydlo.entities.Role;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public class UserRegDTO {
+	
+	
+	private String name;
+	
+
+	private String email;
+	
+
+	private String phone;
+	
+
+	private String password;
+	
+
+	private Role role;
+
+	
+	private Address address;
+
+
+}

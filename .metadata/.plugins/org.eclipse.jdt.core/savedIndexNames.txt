@@ -1,0 +1,9 @@
+INDEX VERSION 1.134+C:\Users\HP\Desktop\Rydlo\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+690879853.index
+642967.index
+3567043918.index
+887495544.index
+3320914188.index
+1545404170.index
+3109168865.index

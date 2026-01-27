@@ -1,0 +1,9 @@
+package com.rydlo.controller;
+
+import com.rydlo.dto.UserRegDTO;
+
+public interface userService {
+	
+	public String addUser(UserRegDTO userDTO); 
+
+}

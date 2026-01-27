@@ -1,0 +1,18 @@
+package com.rydlo.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rydlo.dto.UserRegDTO;
+
+import jakarta.validation.Valid;
+
+@Service
+@Transactional
+public class UserService {
+
+	public String addUser(@Valid UserRegDTO userDto);
+	
+	
+
+}

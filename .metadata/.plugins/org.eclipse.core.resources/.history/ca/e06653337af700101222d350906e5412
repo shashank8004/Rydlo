@@ -1,0 +1,5 @@
+package com.rydlo.service;
+
+public interface AdminService {
+
+}

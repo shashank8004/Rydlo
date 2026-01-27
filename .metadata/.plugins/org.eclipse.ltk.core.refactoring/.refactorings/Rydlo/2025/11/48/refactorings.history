@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.exam&apos; to &apos;com.rydlo&apos;&#x0D;&#x0A;- Original project: &apos;Rydlo&apos;&#x0D;&#x0A;- Original element: &apos;Rydlo/src/main/java/com.exam&apos;&#x0D;&#x0A;- Renamed element: &apos;Rydlo/src/main/java/com.rydlo&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.exam&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.exam" name="com.rydlo" qualified="false" references="true" stamp="1764409061980" textual="false" version="1.0"/>
+</session>

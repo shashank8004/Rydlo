@@ -1,0 +1,27 @@
+package com.rydlo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rydlo.Repository.UserRepository;
+import com.rydlo.dto.UserRegDTO;
+
+import jakarta.validation.Valid;
+
+@Service
+@Transactional
+public class UserServiceIMPL implements UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Override
+	public String addUser(@Valid UserRegDTO userDto)
+	{
+		
+		
+		return null;
+	}
+
+}

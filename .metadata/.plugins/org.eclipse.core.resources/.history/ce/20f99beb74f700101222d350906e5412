@@ -1,0 +1,36 @@
+package com.rydlo.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.rydlo.Repository.UserRepository;
+import com.rydlo.dto.UserRegDTO;
+import com.rydlo.entities.User;
+
+import jakarta.validation.Valid;
+
+@Service
+@Transactional
+public class UserServiceIMPL implements UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+	private ModelMapper modelMapper;
+	
+	@Override
+	public String addUser(@Valid UserRegDTO userDto)
+	{
+		User user = modelMapper.map(userDto,User.class);
+		
+		User persistentUser = userRepository.save(user);
+		
+		return "User added with user id = "+persistentUser.getId();
+		
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,40 @@
+package com.rydlo.dto;
+
+import com.rydlo.entities.Address;
+import com.rydlo.entities.Role;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+public class UserRegDTO {
+	
+	
+	@NotBlank(message=" Name is mandatory")
+	private String name;
+	
+	@NotBlank(message=" Email is mandatory")
+	private String email;
+	
+	@NotBlank(message=" Phone is mandatory")
+	private String phone;
+	
+	@NotBlank(message=" Password is mandatory")
+
+	private String password;
+	
+	@NotNull(message=" Role is mandatory")
+	private Role role;
+
+	@NotNull(message=" Address is mandatory")
+	private Address address;
+
+
+}
