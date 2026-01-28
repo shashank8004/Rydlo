@@ -54,4 +54,11 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getMyBookings());
     }
 
+    @PostMapping("/{bookingId}/cancel")
+    public ResponseEntity<String> cancelBooking(@PathVariable Long bookingId) {
+        System.out.println("Cancel booking request received for booking ID: " + bookingId);
+        bookingService.cancelBooking(bookingId);
+        return ResponseEntity.ok("Booking cancelled successfully");
+    }
+
 }

@@ -109,6 +109,21 @@ public class BookingServiceIMPL implements BookingService {
 
 	        bookingRepository.save(booking);
 
+	        // --- PAYMENT TRANSACTION RECORDING ---
+	        Transaction transaction = new Transaction();
+	        transaction.setBookingDetails(booking);
+	        transaction.setAmount(price.getTotalPayable()); 
+	        transaction.setTransactionType(com.rydlo.entities.TransactionType.BOOKING_PAYMENT);
+	        
+	       
+	        String txnId = request.getPaymentId() != null ? request.getPaymentId() : "SIM_" + java.util.UUID.randomUUID().toString();
+	        transaction.setGatewayPaymentId(txnId);
+	        transaction.setGatewayOrderId("ORD_" + txnId); // Dummy Order ID
+	        transaction.setTransactionStatus(TransactionStatus.SUCCESSFUL); // Assuming success for simulation
+	        
+	        transactionRepository.save(transaction);
+	        // -------------------------------------
+
 	        // Response
 	        CreateBookingResponseDTO res = new CreateBookingResponseDTO();
 	        res.setBookingId(booking.getId());
@@ -230,6 +245,41 @@ public class BookingServiceIMPL implements BookingService {
 	                    return dto;
 	                })
 	                .collect(Collectors.toList());
+	    }
+
+	    @Override
+	    public void cancelBooking(Long bookingId) {
+	        // Get current user
+	        UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	        Customer customer = customerRepository.findByUser_Id(userPrincipal.getUserId())
+	                .orElseThrow(() -> new ResourceNotFoundException("Customer profile not found"));
+	        
+	        BookingDetails booking = bookingRepository.findById(bookingId)
+	                .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
+
+	        // Verify ownership
+	        if (!booking.getCustomer().getId().equals(customer.getId())) {
+	            throw new IllegalStateException("You can only cancel your own bookings");
+	        }
+
+	        if (booking.getBookingStatus() != BookingStatus.BOOKED) {
+	            throw new IllegalStateException("Only BOOKED rides can be cancelled");
+	        }
+
+	        LocalDateTime now = LocalDateTime.now();
+	        long hoursUntilPickup = Duration.between(now, booking.getPickupDateTime()).toHours();
+
+	        if (hoursUntilPickup < 24) {
+	            throw new IllegalStateException("Cancellation is only allowed at least 24 hours before pickup time. Please contact support.");
+	        }
+
+	        booking.setBookingStatus(BookingStatus.CANCELLED);
+	        
+	        // Mark existing transactions as REFUND_INITIATED? 
+	        // For now, let's just create a negative transaction or log it
+	        // or just leave it as is, and Admin handles refunds manually
+	        
+	        bookingRepository.save(booking);
 	    }
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{AdminService.java[AdminService" modifiers="513" timestamp="1769534108634"/>
+    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{AdminService.java[AdminService" modifiers="513" timestamp="1769588465776"/>
     <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.entities{BaseEntity.java[BaseEntity" modifiers="1" timestamp="1764409666444"/>
-    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{CustomerService.java[CustomerService" modifiers="513" timestamp="1769502287957"/>
+    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{CustomerService.java[CustomerService" modifiers="513" timestamp="1769542880648"/>
     <typeInfo handle="=Rydlo/C:\/Users\/HP\/.m2\/repository\/org\/springframework\/data\/spring-data-commons\/3.5.5\/spring-data-commons-3.5.5.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-commons=/=/maven.version=/3.5.5=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.data.util(CustomCollectionRegistrar.class[CustomCollectionRegistrar" modifiers="1537" timestamp="1769107129661"/>
-    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{OwnerService.java[OwnerService" modifiers="513" timestamp="1769527677375"/>
+    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{OwnerService.java[OwnerService" modifiers="513" timestamp="1769586438652"/>
     <typeInfo handle="=Rydlo/C:\/Users\/HP\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/3.5.5\/spring-data-jpa-3.5.5.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/3.5.5=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1769107129857"/>
-    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{BikeService.java[BikeService" modifiers="513" timestamp="1769440670495"/>
+    <typeInfo handle="=Rydlo/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rydlo.service{BikeService.java[BikeService" modifiers="513" timestamp="1769542880644"/>
     <typeInfo handle="=Rydlo/D:\/sts-4.30.0.RELEASE\/sts-4.30.0.RELEASE\/plugins\/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.6.v20250130-0529\/jre\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/21\/docs\/api\/=/=/maven.pomderived=/true=/&lt;java.lang(RuntimeException.class[RuntimeException" modifiers="33" timestamp="1738215354000"/>
 </typeInfoHistroy>

@@ -16,6 +16,9 @@ public class BikeResDTO {
 	//private double rentPerHour;
 	private double rentPerKm;
 	
+	private String city;
+	private String locality;
+	
 
 }
 

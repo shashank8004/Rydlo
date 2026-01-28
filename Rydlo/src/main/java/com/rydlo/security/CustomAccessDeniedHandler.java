@@ -28,7 +28,9 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
                        AccessDeniedException accessDeniedException) 
                        throws IOException, ServletException {
         
-        log.error("Access denied error: {}", accessDeniedException.getMessage());
+        
+        log.error("Access denied error for URI: {} | Message: {}", request.getRequestURI(), accessDeniedException.getMessage());
+        log.error("User: {}", request.getUserPrincipal());
 
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.setContentType("application/json");

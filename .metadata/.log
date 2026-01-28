@@ -13684,3 +13684,637 @@ java.util.concurrent.TimeoutException
 
 !ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:15:35.655
 !MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:28.940
+!MESSAGE [Info] Document is null for editor: AdminServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:28.943
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/service/AdminServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:29.354
+!MESSAGE [Info] Document is null for editor: CustomUserDetailsServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:29.355
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/security/CustomUserDetailsServiceImpl.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:29.398
+!MESSAGE [Info] Document is null for editor: BikeController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:29.399
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/controller/BikeController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:29.487
+!MESSAGE [Info] Document is null for editor: BikeServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:30:29.489
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/service/BikeServiceIMPL.java
+!SESSION 2026-01-28 01:39:21.520 -----------------------------------------------
+eclipse.buildId=4.35.0.202504180233
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-28 01:40:52.824
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2026-01-28 01:40:54.052
+!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.29.0 (328) Component descriptor entry 'OSGI-INF/*.xml' not found
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-28 01:41:06.471
+!MESSAGE Logback config file: C:\Users\HP\Desktop\Rydlo\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.ui 2 0 2026-01-28 01:41:08.358
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-01-28 01:41:08.358
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2026-01-28 01:41:09.472
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-01-28 01:41:09.472
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:41:34.753
+!MESSAGE [Info] Starting language server with binary lsp agent.
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:41:34.769
+!MESSAGE [Info] Found native binary in fragment bundle: com.microsoft.copilot.eclipse.core.agent.win32
+
+!ENTRY org.eclipse.egit.ui 2 0 2026-01-28 01:41:34.897
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\HP'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 01:41:35.064
+!MESSAGE [Info] Lsp agent started successfully.
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:41:54.849
+!MESSAGE [Info]	[lsp] GitHub Copilot Language Server 1.401.0 initialized
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:41:55.467
+!MESSAGE [Info]	[default] Policy watcher started for GitHub Copilot Plugin
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:41:55.989
+!MESSAGE [Info]	[certificates] Removed 9 expired certificates
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:41:56.775
+!MESSAGE [Info]	[GithubAvailableEmbeddingTypes] Got embeddings. Primary: metis-1024-I16-Binary. Deprecated: 
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:41:57.928
+!MESSAGE [Info]	[AutoModelService] Auto model cache cleared due to token update
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:41:57.930
+!MESSAGE [Info]	[CopilotMCP] MCP state changed from false to true
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 01:41:57.932
+!MESSAGE [Info]	[Semantic Search] Semantic search is disabled { reason: 'watchedFiles capability is not available' }
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 01:42:15.197
+!MESSAGE Timed out after waiting for 300ms for semantic tokens from Language Servers
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.jdt.LSJavaSemanticTokensProvider.computeSemanticTokens(LSJavaSemanticTokensProvider.java:68)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.getContributedSemanticTokens(SemanticHighlightingReconciler.java:423)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.reconciled(SemanticHighlightingReconciler.java:470)
+	at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled(CompilationUnitEditor.java:1674)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconciled(JavaReconcilingStrategy.java:228)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconciled(JavaCompositeReconcilingStrategy.java:171)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:147)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:100)
+	at org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:421)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
+
+!ENTRY org.eclipse.jface 2 0 2026-01-28 02:16:04.266
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2026-01-28 02:16:04.266
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.ui.navigate.open.type"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolInWorkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.lsp4e.symbolInWorkspace"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 02:20:35.565
+!MESSAGE Timed out after waiting for 300ms for semantic tokens from Language Servers
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.jdt.LSJavaSemanticTokensProvider.computeSemanticTokens(LSJavaSemanticTokensProvider.java:68)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.getContributedSemanticTokens(SemanticHighlightingReconciler.java:423)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.reconciled(SemanticHighlightingReconciler.java:470)
+	at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled(CompilationUnitEditor.java:1674)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconciled(JavaReconcilingStrategy.java:228)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconciled(JavaCompositeReconcilingStrategy.java:171)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:147)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:100)
+	at org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:421)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 02:20:38.343
+!MESSAGE Timed out after waiting for 300ms for semantic tokens from Language Servers
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.jdt.LSJavaSemanticTokensProvider.computeSemanticTokens(LSJavaSemanticTokensProvider.java:68)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.getContributedSemanticTokens(SemanticHighlightingReconciler.java:423)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.reconciled(SemanticHighlightingReconciler.java:470)
+	at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled(CompilationUnitEditor.java:1674)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconciled(JavaReconcilingStrategy.java:228)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconciled(JavaCompositeReconcilingStrategy.java:171)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:115)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 02:20:48.607
+!MESSAGE Timed out after waiting for 300ms for semantic tokens from Language Servers
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.jdt.LSJavaSemanticTokensProvider.computeSemanticTokens(LSJavaSemanticTokensProvider.java:68)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.getContributedSemanticTokens(SemanticHighlightingReconciler.java:423)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.reconciled(SemanticHighlightingReconciler.java:470)
+	at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled(CompilationUnitEditor.java:1674)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconciled(JavaReconcilingStrategy.java:228)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconciled(JavaCompositeReconcilingStrategy.java:171)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:115)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:21:12.107
+!MESSAGE [Info]	[AutoModelService] Auto model cache cleared due to token update
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 02:21:14.131
+!MESSAGE [Info] Completion request timed out after 5000 milliseconds
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:21:14.707
+!MESSAGE [Info]	[fetchCompletions] Request 8d2c1513-767a-400b-8da1-faa2fb22643c at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 907.4174999999814ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:21:38.378
+!MESSAGE [Info]	[fetchCompletions] Request 6c90fc16-3a1c-421f-a4cf-98ba0020c419 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 694.4294000002556ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:21:38.625
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:21:39.080
+!MESSAGE [Info]	[fetchCompletions] Request edd205c1-502b-43b3-a773-abd675f977fb at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 389.2861999999732ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:21:39.081
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:22:16.096
+!MESSAGE [Info]	[code-referencing] Calling Match
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:22:31.073
+!MESSAGE [Info]	[code-referencing] No match found
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:16.667
+!MESSAGE [Info]	[fetchCompletions] Request 9ca2a08f-5c1a-449f-9ea2-4b19d92a980d at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 275.43699999991804ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:16.749
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:17.058
+!MESSAGE [Info]	[fetchCompletions] Request d3ec9a08-c843-4f13-936a-9a887733eec4 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 285.8607000000775ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:17.137
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:17.480
+!MESSAGE [Info]	[fetchCompletions] Request b60082ab-4e14-469c-bedf-48dde3094db5 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 313.38480000011623ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:17.528
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:17.847
+!MESSAGE [Info]	[fetchCompletions] Request 10ea89d0-5291-4826-bf27-4a1a711fe99e at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 279.40010000020266ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:17.848
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:18.687
+!MESSAGE [Info]	[fetchCompletions] Request 8a513f03-a925-4059-89f8-52f5f69689b8 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 255.59940000018105ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:18.882
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:19.193
+!MESSAGE [Info]	[fetchCompletions] Request 9bc1668e-0963-4b05-9fdf-3a3329a6e36f at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 267.468200000003ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:19.193
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:20.771
+!MESSAGE [Info]	[code-referencing] Calling Match
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:21.031
+!MESSAGE [Info]	[code-referencing] No match found
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:29.185
+!MESSAGE [Info]	[fetchCompletions] Request 458e14fc-95dc-4c78-a465-d92d23013d91 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 321.3849999997765ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:29.259
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:29.568
+!MESSAGE [Info]	[fetchCompletions] Request e3b9ed1b-6d53-4fe7-9c00-178f705fd55b at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 277.8700999999419ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:29.670
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:29.982
+!MESSAGE [Info]	[fetchCompletions] Request 3cfafe43-9a02-4bde-b2c2-dae92af20b26 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 251.19969999976456ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:30.086
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:31.437
+!MESSAGE [Info]	[code-referencing] Calling Match
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:32.346
+!MESSAGE [Info]	[code-referencing] No match found
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:35.024
+!MESSAGE [Info]	[fetchCompletions] Request de628270-eb61-4674-a461-c4a53440bb74 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 310.0696999998763ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:35.114
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:35.551
+!MESSAGE [Info]	[fetchCompletions] Request d24b8f5c-ab1e-42e3-b566-d52e2c2ee1f9 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 378.5674000000581ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:35.665
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:40.479
+!MESSAGE [Info]	[fetchCompletions] Request 7640167e-4306-4060-82b9-1389eee413be at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 419.91729999985546ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:40.481
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:42.347
+!MESSAGE [Info]	[fetchCompletions] Request 029d0cc5-3e0c-4f6d-ba27-6c128dc90468 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 330.6799000003375ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:42.531
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:43.037
+!MESSAGE [Info]	[fetchCompletions] Request 6a6f62b2-b4af-49b3-9180-d5560a452a01 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 454.89199999999255ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:43.037
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:45.853
+!MESSAGE [Info]	[code-referencing] Calling Match
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:23:46.238
+!MESSAGE [Info]	[code-referencing] No match found
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:10.289
+!MESSAGE [Info]	[fetchCompletions] Request aa7c95c8-956c-4494-a199-73c5a1c6ef0b at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 279.160000000149ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:10.340
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:10.697
+!MESSAGE [Info]	[fetchCompletions] Request bd065f4a-886c-49ff-a574-4ca75dd098c6 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 335.60639999993145ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:10.749
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:11.139
+!MESSAGE [Info]	[fetchCompletions] Request d926ecf6-bf9c-46d6-b749-753f898110a1 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 340.73620000015944ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:11.143
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:11.531
+!MESSAGE [Info]	[fetchCompletions] Request 198e63e6-299f-4c70-abb9-367fcd75e66c at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 335.3807000000961ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:11.565
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:11.873
+!MESSAGE [Info]	[fetchCompletions] Request 33064df4-5d59-43db-a4ed-652662565c9c at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 271.0057000000961ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:11.932
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:12.370
+!MESSAGE [Info]	[fetchCompletions] Request 1e04d426-c8ff-4694-a748-cfa83227590c at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 361.70779999997467ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:24:12.372
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:27:06.520
+!MESSAGE [Info]	[fetchCompletions] Request c0888ce1-0728-486b-970a-abca19469b78 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 969.1641000001691ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:27:06.605
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:27:38.721
+!MESSAGE [Info]	[fetchCompletions] Request 8c636a1f-0e69-4ef4-8de0-4c2bfb12b6e7 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 328.88759999955073ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:27:38.805
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:27:52.796
+!MESSAGE [Info]	[fetchCompletions] Request e259b649-58bc-4361-ab50-c42f008a4070 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 369.6602000002749ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:27:52.847
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:41.324
+!MESSAGE [Info]	[fetchCompletions] Request 9276b523-357a-476e-8d6b-aa826a46dd5e at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 300.01790000032634ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:41.368
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:41.698
+!MESSAGE [Info]	[fetchCompletions] Request f85f44ab-a257-403d-8f59-2f0665118397 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 296.0985999996774ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:41.768
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:42.346
+!MESSAGE [Info]	[fetchCompletions] Request 1db24824-a815-4cbe-a4de-1c102dd4da58 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 266.14019999979064ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:42.411
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:42.752
+!MESSAGE [Info]	[fetchCompletions] Request b1510bfa-445e-4a2e-ba3d-cb533bc981bc at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 295.1097999997437ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:42.799
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:45.420
+!MESSAGE [Info]	[fetchCompletions] Request d4f82b87-992e-43a9-82c9-359f9ec1b0a1 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 287.7807999998331ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:45.489
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:45.837
+!MESSAGE [Info]	[fetchCompletions] Request c5b2a5fb-a241-46cf-a288-3cec2b549b9a at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 310.65059999981895ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:45.928
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:46.413
+!MESSAGE [Info]	[fetchCompletions] Request 45fc650a-0515-46ee-82fa-d3ed0048a017 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 450.2655999995768ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:46.414
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:47.339
+!MESSAGE [Info]	[code-referencing] Calling Match
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:28:48.292
+!MESSAGE [Info]	[code-referencing] No match found
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:01.258
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:01.259
+!MESSAGE [Info]	[fetchCompletions] Request 64a80e04-b38a-4cc7-a605-e43ae037e421 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 358.80549999978393ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:01.867
+!MESSAGE [Info]	[fetchCompletions] Request ce3d0a99-ce36-4cfe-8b34-9f725bf0978f at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 337.7513999999501ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:01.975
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [null]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:02.284
+!MESSAGE [Info]	[fetchCompletions] Request a2ac1d23-aa1c-4578-95a8-bbc972032a65 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 264.83920000027865ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:02.387
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:05.393
+!MESSAGE [Info]	[fetchCompletions] Request c0d4fc4b-9ee0-467f-a326-05495c9cbb79 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 277.3958000000566ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:05.533
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:05.868
+!MESSAGE [Info]	[fetchCompletions] Request 4fda4dd3-9a86-4cb2-bdba-5d3b1f7ed398 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 304.37730000028387ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:05.945
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:08.944
+!MESSAGE [Info]	[code-referencing] Calling Match
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:09.161
+!MESSAGE [Info]	[code-referencing] No match found
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:53.899
+!MESSAGE [Info]	[fetchCompletions] Request 533780e9-1bda-451c-b906-6c70a24babd4 at <https://proxy.individual.githubcopilot.com/v1/engines/gpt-41-copilot/completions> finished with 200 status after 360.12929999968037ms
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 02:29:53.901
+!MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.202
+!MESSAGE [Info] Document is null for editor: BikeServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.204
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/service/BikeServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.261
+!MESSAGE [Info] Document is null for editor: BookingController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.262
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/controller/BookingController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.481
+!MESSAGE [Info] Document is null for editor: BookingServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.481
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/service/BookingServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.543
+!MESSAGE [Info] Document is null for editor: TransactionServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.545
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/service/TransactionServiceIMPL.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.613
+!MESSAGE [Info] Document is null for editor: TransactionController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.636
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/controller/TransactionController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.722
+!MESSAGE [Info] Document is null for editor: SecurityConfiguration.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 03:07:11.722
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/security/SecurityConfiguration.java
+
+!ENTRY org.eclipse.core.resources 2 10035 2026-01-28 03:07:22.051
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2026-01-28 12:45:04.916 -----------------------------------------------
+eclipse.buildId=4.35.0.202504180233
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-28 12:46:34.360
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2026-01-28 12:46:35.129
+!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.29.0 (328) Component descriptor entry 'OSGI-INF/*.xml' not found
+
+!ENTRY org.eclipse.core.resources 2 10035 2026-01-28 12:46:51.874
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-28 12:46:55.124
+!MESSAGE Logback config file: C:\Users\HP\Desktop\Rydlo\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.ui 2 0 2026-01-28 12:46:56.175
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-01-28 12:46:56.175
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2026-01-28 12:46:57.243
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-01-28 12:46:57.243
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 12:47:14.172
+!MESSAGE [Info] Starting language server with binary lsp agent.
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 12:47:14.179
+!MESSAGE [Info] Found native binary in fragment bundle: com.microsoft.copilot.eclipse.core.agent.win32
+
+!ENTRY org.eclipse.egit.ui 2 0 2026-01-28 12:47:14.950
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\HP'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 12:47:17.816
+!MESSAGE [Info] Lsp agent started successfully.
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 12:47:30.894
+!MESSAGE [Info]	[lsp] GitHub Copilot Language Server 1.401.0 initialized
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 12:47:31.228
+!MESSAGE [Info]	[default] Policy watcher started for GitHub Copilot Plugin
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 12:47:31.415
+!MESSAGE [Info]	[certificates] Removed 9 expired certificates
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 12:47:32.105
+!MESSAGE [Info]	[GithubAvailableEmbeddingTypes] Got embeddings. Primary: metis-1024-I16-Binary. Deprecated: 
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 12:47:32.654
+!MESSAGE [Info]	[AutoModelService] Auto model cache cleared due to token update
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 12:47:32.655
+!MESSAGE [Info]	[CopilotMCP] MCP state changed from false to true
+
+!ENTRY org.eclipse.lsp4e 1 0 2026-01-28 12:47:32.656
+!MESSAGE [Info]	[Semantic Search] Semantic search is disabled { reason: 'watchedFiles capability is not available' }
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 12:47:34.223
+!MESSAGE Timeout waiting for data to generate LS hover
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:66)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:165)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 12:47:44.530
+!MESSAGE Timed out after waiting for 300ms for semantic tokens from Language Servers
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.jdt.LSJavaSemanticTokensProvider.computeSemanticTokens(LSJavaSemanticTokensProvider.java:68)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.getContributedSemanticTokens(SemanticHighlightingReconciler.java:423)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.reconciled(SemanticHighlightingReconciler.java:470)
+	at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled(CompilationUnitEditor.java:1674)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconciled(JavaReconcilingStrategy.java:228)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconciled(JavaCompositeReconcilingStrategy.java:171)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:147)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:100)
+	at org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:421)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 12:49:11.627
+!MESSAGE [Info] Document is null for editor: SecurityConfiguration.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 12:49:11.628
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/security/SecurityConfiguration.java
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 13:30:16.735
+!MESSAGE Timed out after waiting for 300ms for semantic tokens from Language Servers
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.jdt.LSJavaSemanticTokensProvider.computeSemanticTokens(LSJavaSemanticTokensProvider.java:68)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.getContributedSemanticTokens(SemanticHighlightingReconciler.java:423)
+	at org.eclipse.jdt.internal.ui.javaeditor.SemanticHighlightingReconciler.reconciled(SemanticHighlightingReconciler.java:470)
+	at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled(CompilationUnitEditor.java:1674)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconciled(JavaReconcilingStrategy.java:228)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconciled(JavaCompositeReconcilingStrategy.java:171)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:147)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:100)
+	at org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:421)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 13:30:21.084
+!MESSAGE LS Hover Html and JDT hover html were naively concatenated as LS hover HTML BODY tag wasn't found
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-01-28 13:32:25.367
+!MESSAGE LS Hover Html and JDT hover html were naively concatenated as LS hover HTML BODY tag wasn't found
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.103
+!MESSAGE [Info] Document is null for editor: OwnerController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.106
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/controller/OwnerController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.241
+!MESSAGE [Info] Document is null for editor: UserRegDTO.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.242
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/dto/UserRegDTO.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.274
+!MESSAGE [Info] Document is null for editor: BikeResDTO.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.276
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/dto/BikeResDTO.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.328
+!MESSAGE [Info] Document is null for editor: AdminController.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2026-01-28 14:28:08.329
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///C:/Users/HP/Desktop/Rydlo/Rydlo/src/main/java/com/rydlo/controller/AdminController.java

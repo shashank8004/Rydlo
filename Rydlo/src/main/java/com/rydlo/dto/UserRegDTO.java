@@ -26,7 +26,7 @@ public class UserRegDTO {
 	private String email;
 	
 	@NotBlank(message=" Phone is mandatory")
-	
+	@jakarta.validation.constraints.Pattern(regexp = "^(\\+91)?[6-9][0-9]{9}$", message = "Invalid Phone Number")
 	private String phone;
 	
 	@NotBlank(message=" Password is mandatory")

@@ -50,6 +50,19 @@ public class AdminServiceIMPL implements AdminService {
 		PickupLocation persistentPickupLocation=pickupLocationRepository.save(transientPickupLocation);
 		return "Picup location added with id= "+persistentPickupLocation.getId();
 	}
+
+	@Override
+	public String updatePickupLocation(Long id, @Valid PickupLocationDto pickupLocationDto) {
+		PickupLocation existingLocation = pickupLocationRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Location not found"));
+		
+		modelMapper.map(pickupLocationDto, existingLocation);
+		// Ensure ID remains the same
+		existingLocation.setId(id);
+		
+		pickupLocationRepository.save(existingLocation);
+		return "Location updated successfully";
+	}
 	
 	@Override
 	public String deletePickupLocation(Long id) {
@@ -81,7 +94,14 @@ public class AdminServiceIMPL implements AdminService {
 	@Override
 	public List<BikeResDTO> getAllBikes() {
 		return bikeDetailsRepository.findAll().stream()
-				.map(bike -> modelMapper.map(bike, BikeResDTO.class))
+				.map(bike -> {
+					BikeResDTO dto = modelMapper.map(bike, BikeResDTO.class);
+					if (bike.getPickupLocation() != null) {
+						dto.setCity(bike.getPickupLocation().getCity());
+						dto.setLocality(bike.getPickupLocation().getLocality());
+					}
+					return dto;
+				})
 				.collect(Collectors.toList());
 	}
 

@@ -42,6 +42,11 @@ public class AdminController
 		return ResponseEntity.status(HttpStatus.CREATED).body(msg);
 	}
 	
+	@org.springframework.web.bind.annotation.PutMapping("/pickup-locations/{id}")
+	public ResponseEntity<?> updatePickupLocation(@org.springframework.web.bind.annotation.PathVariable Long id, @org.springframework.web.bind.annotation.RequestBody @Valid PickupLocationDto pickupLocationDto) {
+		return ResponseEntity.ok(adminService.updatePickupLocation(id, pickupLocationDto));
+	}
+	
 	@org.springframework.web.bind.annotation.DeleteMapping("/pickup-locations/{id}")
 	public ResponseEntity<?> deletePickupLocation(@org.springframework.web.bind.annotation.PathVariable Long id) {
 		return ResponseEntity.ok(adminService.deletePickupLocation(id));

@@ -13,6 +13,8 @@ public interface BookingService {
 
 	DropOffResponseDTO completeRide(Long bookingId, @Valid DropOffRequestDTO request);
 	
+	void cancelBooking(Long bookingId);
+
 	java.util.List<com.rydlo.dto.AdminBookingDTO> getMyBookings();
 
 }

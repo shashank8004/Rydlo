@@ -69,26 +69,40 @@ public class SecurityConfiguration {
             .requestMatchers(HttpMethod.POST, "/bikes/*/price-preview").permitAll()
 
             // Only OWNER can create/update bikes
-            .requestMatchers(HttpMethod.POST, "/bikes/**").hasRole("OWNER")
-            .requestMatchers(HttpMethod.PUT, "/bikes/**").hasRole("OWNER")
-            .requestMatchers(HttpMethod.PATCH, "/bikes/**").hasRole("OWNER")
-            .requestMatchers(HttpMethod.DELETE, "/bikes/**").hasRole("OWNER")
+            .requestMatchers(HttpMethod.POST, "/bikes/**").hasAuthority("ROLE_OWNER")
+            .requestMatchers(HttpMethod.PUT, "/bikes/**").hasAuthority("ROLE_OWNER")
+            .requestMatchers(HttpMethod.PATCH, "/bikes/**").hasAuthority("ROLE_OWNER")
+            .requestMatchers(HttpMethod.DELETE, "/bikes/**").hasAuthority("ROLE_OWNER")
+            
+            // ===== BOOKINGS =====
+            
+            // ===== BOOKINGS =====
+            
+            .requestMatchers(HttpMethod.POST, "/bookings/{bookingId}/cancel").access((authentication, context) -> 
+                new org.springframework.security.authorization.AuthorizationDecision(
+                    authentication.get().getAuthorities().stream()
+                        .anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER") || a.getAuthority().equals("ROLE_OWNER"))
+                )
+            )
+            
+            // ======Transactions======
 
+            .requestMatchers(HttpMethod.GET, "/transactions/my").hasAuthority("ROLE_CUSTOMER")
             // ===== CUSTOMER =====
             .requestMatchers("/customers/**")
-            .hasRole("CUSTOMER")
+            .hasAuthority("ROLE_CUSTOMER")
 
             // ===== OWNER =====
             .requestMatchers("/owners/**")
-            .hasRole("OWNER")
+            .hasAuthority("ROLE_OWNER")
 
             // ===== BOOKINGS =====
             .requestMatchers("/bookings/**")
-            .hasAnyRole("CUSTOMER", "OWNER", "ADMIN")
+            .authenticated()
 
             // ===== ADMIN =====
             .requestMatchers("/admin/**")
-            .hasRole("ADMIN")
+            .hasAuthority("ROLE_ADMIN")
 
             // ===== EVERYTHING ELSE =====
             .anyRequest().authenticated()
@@ -120,7 +134,7 @@ public class SecurityConfiguration {
     org.springframework.web.cors.CorsConfigurationSource corsConfigurationSource() {
         org.springframework.web.cors.CorsConfiguration configuration = new org.springframework.web.cors.CorsConfiguration();
         configuration.setAllowedOrigins(java.util.List.of("http://localhost:5173"));
-        configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(java.util.List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
         org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.UrlBasedCorsConfigurationSource();

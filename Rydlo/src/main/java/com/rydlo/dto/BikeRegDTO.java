@@ -15,6 +15,7 @@ public class BikeRegDTO {
 private String model;
 
 @NotBlank(message="Registration number is required ")
+@jakarta.validation.constraints.Pattern(regexp = "^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{4}$", message = "Invalid Bike Number format")
 private String number;
 
 

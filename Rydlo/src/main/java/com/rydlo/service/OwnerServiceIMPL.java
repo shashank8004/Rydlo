@@ -16,10 +16,17 @@ import com.rydlo.entities.Owner;
 import com.rydlo.entities.PickupLocation;
 import com.rydlo.entities.User;
 import com.rydlo.repository.BikeDetailsRepository;
+import com.rydlo.repository.BookingRepository;
 import com.rydlo.repository.OwnerRepository;
 import com.rydlo.repository.PickupLocationRepository;
+import com.rydlo.repository.TransactionRepository;
 import com.rydlo.repository.UserRepository;
 import com.rydlo.security.UserPrincipal;
+import com.rydlo.dto.AdminBookingDTO;
+import com.rydlo.dto.AdminTransactionDTO;
+import com.rydlo.entities.BookingDetails;
+import com.rydlo.entities.BookingStatus;
+import com.rydlo.entities.Transaction;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -35,6 +42,8 @@ public class OwnerServiceIMPL implements OwnerService {
     private final OwnerRepository ownerRepository;
     private final BikeDetailsRepository bikeDetailsRepository;
     private final PickupLocationRepository pickupLocationRepository;
+    private final BookingRepository bookingRepository;
+    private final TransactionRepository transactionRepository;
     
 	@Override
 	public String addOwner(@Valid OwnerRegDTO owner) {
@@ -155,6 +164,96 @@ public class OwnerServiceIMPL implements OwnerService {
 	@Override
 	public java.util.List<PickupLocation> getPickupLocations() {
 		return pickupLocationRepository.findAll();
+	}
+
+	@Override
+	public java.util.List<AdminBookingDTO> getMyBikesBookings() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		Long userId = userPrincipal.getUserId();
+		
+		Owner owner = ownerRepository.findByUser_Id(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("Owner not found"));
+		
+		// Get all bookings for this owner's bikes
+		java.util.List<BookingDetails> bookings = bookingRepository.findByBikeDetails_Owner(owner);
+		
+		// Filter for upcoming/active bookings (BOOKED status)
+		return bookings.stream()
+				.filter(booking -> booking.getBookingStatus() == BookingStatus.BOOKED)
+				.map(booking -> {
+					AdminBookingDTO dto = new AdminBookingDTO();
+					dto.setId(booking.getId());
+					dto.setPickupDateTime(booking.getPickupDateTime());
+					dto.setDropOffDateTime(booking.getDropOffDateTime());
+					dto.setTotalAmount(booking.getTotalAmount());
+					dto.setBookingStatus(booking.getBookingStatus());
+					dto.setCustomerEmail(booking.getCustomer().getUser().getEmail());
+					dto.setCustomerName(booking.getCustomer().getUser().getFirstName() + " " + 
+											booking.getCustomer().getUser().getLastName());
+					dto.setBikeModel(booking.getBikeDetails().getModel());
+					dto.setBikeNumber(booking.getBikeDetails().getNumber());
+					return dto;
+				})
+				.collect(java.util.stream.Collectors.toList());
+	}
+
+	@Override
+	public void cancelBikeBooking(Long bookingId) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		Long userId = userPrincipal.getUserId();
+		
+		Owner owner = ownerRepository.findByUser_Id(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("Owner not found"));
+		
+		BookingDetails booking = bookingRepository.findById(bookingId)
+				.orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
+		
+		// Security Check: Ensure booking is for owner's bike
+		if (!booking.getBikeDetails().getOwner().getId().equals(owner.getId())) {
+			throw new ResourceNotFoundException("You do not own the bike for this booking");
+		}
+		
+		// Check if booking can be cancelled
+		if (booking.getBookingStatus() != BookingStatus.BOOKED) {
+			throw new IllegalStateException("Only BOOKED bookings can be cancelled");
+		}
+		
+		// Update booking status
+		booking.setBookingStatus(BookingStatus.CANCELLED);
+		bookingRepository.save(booking);
+		
+		// Make bike available again
+		BikeDetails bike = booking.getBikeDetails();
+		bike.setAvailabilityStatus(true);
+		bikeDetailsRepository.save(bike);
+	}
+
+	@Override
+	public java.util.List<AdminTransactionDTO> getMyBikesTransactions() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		Long userId = userPrincipal.getUserId();
+		
+		Owner owner = ownerRepository.findByUser_Id(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("Owner not found"));
+		
+		// Get all transactions for this owner's bikes
+		java.util.List<Transaction> transactions = transactionRepository.findByBookingDetails_BikeDetails_Owner(owner);
+		
+		return transactions.stream()
+				.map(transaction -> {
+					AdminTransactionDTO dto = new AdminTransactionDTO();
+					dto.setId(transaction.getId());
+					dto.setAmount(transaction.getAmount());
+					dto.setTransactionType(transaction.getTransactionType());
+					dto.setTransactionStatus(transaction.getTransactionStatus());
+					dto.setBookingId(transaction.getBookingDetails().getId());
+					dto.setGatewayPaymentId(transaction.getGatewayPaymentId());
+					return dto;
+				})
+				.collect(java.util.stream.Collectors.toList());
 	}
 
 }

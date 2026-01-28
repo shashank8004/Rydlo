@@ -33,5 +33,5 @@ public class CreateBookingRequestDTO {
     @Min(0)
     private int initialKm;
 
-  
+    private String paymentId;
 }

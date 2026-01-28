@@ -27,4 +27,6 @@ public interface BookingRepository extends JpaRepository<BookingDetails, Long>
 		);
 		
 		java.util.List<BookingDetails> findByCustomer(com.rydlo.entities.Customer customer);
+	
+	java.util.List<BookingDetails> findByBikeDetails_Owner(com.rydlo.entities.Owner owner);
 }

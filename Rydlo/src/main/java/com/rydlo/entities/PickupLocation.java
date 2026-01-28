@@ -10,6 +10,8 @@ import lombok.ToString;
 
 
 
+import jakarta.validation.constraints.Pattern;
+
 @Table(name="pickup_location")
 @AttributeOverride(name = "id",column = @Column(name="pickup_location_id"))
 @ToString(callSuper = true,exclude = {"bikeDetails"})
@@ -25,6 +27,8 @@ public class PickupLocation extends BaseEntity {
 	    private String  locality;
 	    private String city;
 	    private String state;
+	    
+	    @Pattern(regexp = "^\\d{6}$", message = "Pincode must be exactly 6 digits")
 	    private String pincode;
 	    
 	   

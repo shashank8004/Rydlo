@@ -15,6 +15,8 @@ public interface AdminService {
 
 	String addPickupLocation(@Valid PickupLocationDto pikupLocationDto);
 	
+	String updatePickupLocation(Long id, @Valid PickupLocationDto pickupLocationDto);
+	
 	String deletePickupLocation(Long id);
 	
 	List<PickupLocation> getAllPickupLocations();

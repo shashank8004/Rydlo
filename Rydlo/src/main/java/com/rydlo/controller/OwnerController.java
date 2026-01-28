@@ -65,6 +65,21 @@ public class OwnerController
 		return ResponseEntity.ok(ownerService.deleteBike(bikeId));
 	}
 	
+	@org.springframework.web.bind.annotation.GetMapping("/bookings")
+	public ResponseEntity<java.util.List<com.rydlo.dto.AdminBookingDTO>> getMyBikesBookings() {
+		return ResponseEntity.ok(ownerService.getMyBikesBookings());
+	}
+	
+	@PostMapping("/bookings/{bookingId}/cancel")
+	public ResponseEntity<String> cancelBikeBooking(@PathVariable Long bookingId) {
+		ownerService.cancelBikeBooking(bookingId);
+		return ResponseEntity.ok("Booking cancelled successfully");
+	}
+	
+	@org.springframework.web.bind.annotation.GetMapping("/transactions")
+	public ResponseEntity<java.util.List<com.rydlo.dto.AdminTransactionDTO>> getMyBikesTransactions() {
+		return ResponseEntity.ok(ownerService.getMyBikesTransactions());
+	}
 	
 
 }
