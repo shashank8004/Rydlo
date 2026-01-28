@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Search, MapPin, Bike, Loader2, IndianRupee } from 'lucide-react';
+import { Search, MapPin, Bike, Loader2, IndianRupee, Home } from 'lucide-react';
 import api from '../api/axios';
+import { Link } from 'react-router-dom';
 
 const CustomerDashboard = () => {
     // Migrated state declarations to the top
@@ -44,10 +45,17 @@ const CustomerDashboard = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 p-6">
-            <div className="max-w-6xl mx-auto space-y-8">
+            <div className="max-w-6xl mx-auto space-y-8 relative">
+
+                {/* Home Button */}
+                <div className="absolute top-0 left-0">
+                    <Link to="/" className="flex items-center gap-2 text-gray-600 hover:text-blue-600 font-semibold bg-white px-4 py-2 rounded-lg shadow-sm">
+                        <Home className="w-5 h-5" /> Home
+                    </Link>
+                </div>
 
                 {/* Tab Navigation */}
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-4 pt-4">
                     <button
                         onClick={() => setActiveTab('search')}
                         className={`px-6 py-2 rounded-full font-bold transition ${activeTab === 'search' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-gray-100'}`}

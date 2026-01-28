@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Users, MapPin, Bike, Trash2, Plus, Loader2 } from 'lucide-react';
+import { Users, MapPin, Bike, Trash2, Plus, Loader2, Home } from 'lucide-react';
 import api from '../api/axios';
+import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
     const [stats, setStats] = useState({ users: 0, locations: 0, bikes: 0 });
@@ -49,16 +50,47 @@ const AdminDashboard = () => {
         }
     };
 
+    const [editingLocation, setEditingLocation] = useState(null);
+
     const handleAddLocation = async (e) => {
         e.preventDefault();
         try {
-            await api.post('/admin/add-pickup-location', newLocation);
-            alert("Location Added!");
+            if (editingLocation) {
+                await api.put(`/admin/pickup-locations/${editingLocation.id}`, newLocation);
+                alert("Location Updated!");
+                setEditingLocation(null);
+            } else {
+                await api.post('/admin/add-pickup-location', newLocation);
+                alert("Location Added!");
+            }
             setNewLocation({ street: '', locality: '', city: '', state: '', pincode: '' });
             fetchDashboardData();
         } catch (error) {
-            alert("Failed to add location");
+            console.error("Location operation failed:", error);
+            if (error.response?.data && typeof error.response.data === 'object' && !error.response.data.message) {
+                const errors = Object.values(error.response.data).join('\n');
+                alert("Validation Failed:\n" + errors);
+            } else {
+                alert("Failed to save location");
+            }
         }
+    };
+
+    const handleEditLocation = (loc) => {
+        setEditingLocation(loc);
+        setNewLocation({
+            street: loc.street,
+            locality: loc.locality,
+            city: loc.city,
+            state: loc.state,
+            pincode: loc.pincode
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const cancelEdit = () => {
+        setEditingLocation(null);
+        setNewLocation({ street: '', locality: '', city: '', state: '', pincode: '' });
     };
 
     const handleDeleteLocation = async (id) => {
@@ -77,7 +109,12 @@ const AdminDashboard = () => {
         <div className="min-h-screen bg-gray-50 p-6">
             <div className="max-w-7xl mx-auto space-y-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+                    <div className="flex items-center gap-4">
+                        <Link to="/" className="p-2 bg-white rounded-lg shadow-sm text-gray-600 hover:text-blue-600 transition">
+                            <Home className="w-6 h-6" />
+                        </Link>
+                        <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+                    </div>
                     <div className="flex flex-wrap gap-2">
                         <button onClick={() => setActiveTab('overview')} className={`px-4 py-2 rounded-lg ${activeTab === 'overview' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600'}`}>Overview</button>
                         <button onClick={() => setActiveTab('locations')} className={`px-4 py-2 rounded-lg ${activeTab === 'locations' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600'}`}>Locations</button>
@@ -109,9 +146,11 @@ const AdminDashboard = () => {
                 {/* Locations Tab */}
                 {(activeTab === 'locations') && (
                     <div className="grid lg:grid-cols-2 gap-8">
-                        {/* Add Location Form */}
+                        {/* Add/Edit Location Form */}
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-fit">
-                            <h2 className="text-xl font-bold mb-4 flex items-center"><Plus className="w-5 h-5 mr-2" /> Add Pickup Location</h2>
+                            <h2 className="text-xl font-bold mb-4 flex items-center">
+                                <Plus className="w-5 h-5 mr-2" /> {editingLocation ? 'Edit Pickup Location' : 'Add Pickup Location'}
+                            </h2>
                             <form onSubmit={handleAddLocation} className="space-y-4">
                                 <input className="w-full p-2 border rounded" placeholder="Street" value={newLocation.street} onChange={e => setNewLocation({ ...newLocation, street: e.target.value })} required />
                                 <div className="grid grid-cols-2 gap-4">
@@ -122,7 +161,16 @@ const AdminDashboard = () => {
                                     <input className="w-full p-2 border rounded" placeholder="State" value={newLocation.state} onChange={e => setNewLocation({ ...newLocation, state: e.target.value })} required />
                                     <input className="w-full p-2 border rounded" placeholder="Pincode" value={newLocation.pincode} onChange={e => setNewLocation({ ...newLocation, pincode: e.target.value })} required />
                                 </div>
-                                <button className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">Add Location</button>
+                                <div className="flex gap-2">
+                                    <button className="flex-1 bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+                                        {editingLocation ? 'Update Location' : 'Add Location'}
+                                    </button>
+                                    {editingLocation && (
+                                        <button type="button" onClick={cancelEdit} className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">
+                                            Cancel
+                                        </button>
+                                    )}
+                                </div>
                             </form>
                         </div>
 
@@ -133,7 +181,10 @@ const AdminDashboard = () => {
                                 {locations.map(loc => (
                                     <div key={loc.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg group">
                                         <div><p className="font-semibold">{loc.locality}, {loc.city}</p><p className="text-xs text-gray-500">{loc.pincode}</p></div>
-                                        <button onClick={() => handleDeleteLocation(loc.id)} className="text-red-500 hover:bg-red-50 p-2 rounded opacity-0 group-hover:opacity-100 transition"><Trash2 className="w-4 h-4" /></button>
+                                        <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                                            <button onClick={() => handleEditLocation(loc)} className="text-blue-500 hover:bg-blue-50 p-2 rounded">Edit</button>
+                                            <button onClick={() => handleDeleteLocation(loc.id)} className="text-red-500 hover:bg-red-50 p-2 rounded"><Trash2 className="w-4 h-4" /></button>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
