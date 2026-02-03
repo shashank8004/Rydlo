@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import api from '../api/axios';
-import { jwtDecode } from 'jwt-decode'; // You might need to install this: npm install jwt-decode
+import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext(null);
 
@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check if user is logged in on mount
+
         const token = localStorage.getItem('token');
         const storedUser = localStorage.getItem('user');
 
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
                 if (storedUser) {
                     setUser(JSON.parse(storedUser));
                 } else {
-                    // Fallback to decoding token if user data missing
+
                     const decoded = jwtDecode(token);
                     setUser({
                         email: decoded.sub,
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('user', JSON.stringify(userData));
 
             setUser(userData);
-            return userData; // Return the full user object
+            return userData;
         } catch (error) {
             console.error("Login failed", error);
             throw error;
@@ -61,8 +61,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (userData) => {
-        // This calls /auth/register or similar
-        // Implementation can vary based on your flow (auto-login after reg?)
+
     };
 
     const logout = () => {

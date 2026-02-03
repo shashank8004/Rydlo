@@ -50,7 +50,7 @@ const BrowseBikesPage = () => {
             pickupTime: pickupTime + ":00",
             dropOffDate: dropOffDate,
             dropOffTime: dropOffTime + ":00",
-            bikeType: null // Optional
+            bikeType: null 
         };
 
         try {

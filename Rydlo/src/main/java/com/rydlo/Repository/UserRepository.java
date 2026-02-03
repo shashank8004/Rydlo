@@ -6,16 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.rydlo.entities.User;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 	boolean existsByEmailAndPhone(String email, String phone);
 
-	Optional<User> findByEmail (String email);
+	Optional<User> findByEmail(String email);
+
+	Optional<User> findByPhone(String phone);
 
 	boolean existsByPhone(String phone);
 
 	boolean existsByEmail(String email);
-	
-	
 
 }

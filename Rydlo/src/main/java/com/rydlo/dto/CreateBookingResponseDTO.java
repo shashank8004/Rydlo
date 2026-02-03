@@ -24,6 +24,9 @@ public class CreateBookingResponseDTO {
     private double totalPayable;
 
     private String bookingStatus;
+    
+    private String gatewayOrderId;
+    private String razorpayKeyId;
 
     
 }

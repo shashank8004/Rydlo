@@ -81,7 +81,7 @@ const BikeDetailsPage = () => {
 
         const requestData = {
             pickupDate,
-            pickupTime: pickupTime + ":00", // Append seconds if needed by backend LocalTime
+            pickupTime: pickupTime + ":00",
             dropOffDate,
             dropOffTime: dropOffTime + ":00"
         };
@@ -100,6 +100,62 @@ const BikeDetailsPage = () => {
     // Payment State
     const [showPaymentModal, setShowPaymentModal] = useState(false);
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
+    // Card Details State
+    const [cardDetails, setCardDetails] = useState({
+        number: '',
+        expiry: '',
+        cvv: ''
+    });
+    const [paymentErrors, setPaymentErrors] = useState({});
+
+    const handleCardInputChange = (e) => {
+        const { name, value } = e.target;
+        setCardDetails(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        // Clear error when user types
+        if (paymentErrors[name]) {
+            setPaymentErrors(prev => ({
+                ...prev,
+                [name]: ''
+            }));
+        }
+    };
+
+    const validatePayment = () => {
+        const errors = {};
+        const { number, expiry, cvv } = cardDetails;
+
+        // Card Number: 16 digits
+        if (!/^\d{16}$/.test(number.replace(/\s/g, ''))) {
+            errors.number = 'Card number must be 16 digits';
+        }
+
+        // CVV: 3 digits
+        if (!/^\d{3}$/.test(cvv)) {
+            errors.cvv = 'CVV must be 3 digits';
+        }
+
+        // Expiry: MM/YY
+        if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+            errors.expiry = 'Format: MM/YY';
+        } else {
+            const [month, year] = expiry.split('/').map(Number);
+            const currentYear = new Date().getFullYear() % 100; // Last 2 digits
+            const currentMonth = new Date().getMonth() + 1;
+
+            if (month < 1 || month > 12) {
+                errors.expiry = 'Invalid month (01-12)';
+            } else if (year < currentYear || (year === currentYear && month < currentMonth)) {
+                errors.expiry = 'Card has expired';
+            }
+        }
+
+        setPaymentErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
 
     const initiateBooking = () => {
         if (!user) {
@@ -121,32 +177,54 @@ const BikeDetailsPage = () => {
     };
 
     const handlePaymentAndBooking = async () => {
+        if (!validatePayment()) {
+            return;
+        }
+
         setIsProcessingPayment(true);
-
-        // Simulate Payment Gateway Delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
-        const simulatedPaymentId = "pay_" + Math.random().toString(36).substr(2, 9);
-
         setSubmitting(true);
+        setPriceError('');
+
         try {
+            // Step 1: Create Booking (PENDING_PAYMENT)
             const bookingRequest = {
                 bikeId: id,
                 customerId: user.id,
                 pickupDate,
-                pickupTime: pickupTime + ":00",
+                pickupTime: pickupTime + ":00", // Format HH:mm:ss
                 dropOffDate,
                 dropOffTime: dropOffTime + ":00",
-                initialKm: bike.usedKm || 0,
-                paymentId: simulatedPaymentId
+                initialKm: bike.usedKm || 0
             };
 
-            await api.post('/bookings', bookingRequest);
+            const createResponse = await api.post('/bookings', bookingRequest);
+            const { bookingId, gatewayOrderId, totalPayable } = createResponse.data;
+
+            // Step 2: Simulate Payment Gateway Delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Step 3: Confirm Payment (Mock)
+            // In a real scenario, this happens after Razorpay success
+            const mockPaymentId = "pay_mock_" + Math.random().toString(36).substr(2, 9);
+            const mockSignature = "sig_mock_" + Math.random().toString(36).substr(2, 9);
+
+            const verificationRequest = {
+                orderId: gatewayOrderId,
+                paymentId: mockPaymentId,
+                signature: mockSignature
+            };
+
+            await api.post(`/bookings/${bookingId}/confirm-payment`, verificationRequest);
+
             setShowPaymentModal(false);
             setBookingSuccess(true);
+            setCardDetails({ number: '', expiry: '', cvv: '' }); // Reset
+
         } catch (err) {
             console.error("Booking error:", err);
-            setPriceError('Booking failed. Please try again.');
+            // If the error is from the backend, show the message
+            const errorMessage = err.response?.data?.message || err.message || 'Booking failed. Please try again.';
+            setPriceError(errorMessage);
             setShowPaymentModal(false);
         } finally {
             setSubmitting(false);
@@ -393,16 +471,43 @@ const BikeDetailsPage = () => {
                                 <div className="space-y-3">
                                     <div>
                                         <label className="block text-xs font-semibold text-gray-500 mb-1">CARD NUMBER</label>
-                                        <input type="text" placeholder="0000 0000 0000 0000" className="w-full p-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-blue-500" />
+                                        <input
+                                            type="text"
+                                            name="number"
+                                            value={cardDetails.number}
+                                            onChange={handleCardInputChange}
+                                            maxLength="16"
+                                            placeholder="0000 0000 0000 0000"
+                                            className={`w-full p-2.5 border rounded-lg text-sm outline-none focus:border-blue-500 ${paymentErrors.number ? 'border-red-500' : 'border-gray-200'}`}
+                                        />
+                                        {paymentErrors.number && <p className="text-xs text-red-500 mt-1">{paymentErrors.number}</p>}
                                     </div>
                                     <div className="flex gap-3">
                                         <div className="w-1/2">
                                             <label className="block text-xs font-semibold text-gray-500 mb-1">EXPIRY</label>
-                                            <input type="text" placeholder="MM/YY" className="w-full p-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-blue-500" />
+                                            <input
+                                                type="text"
+                                                name="expiry"
+                                                value={cardDetails.expiry}
+                                                onChange={handleCardInputChange}
+                                                maxLength="5"
+                                                placeholder="MM/YY"
+                                                className={`w-full p-2.5 border rounded-lg text-sm outline-none focus:border-blue-500 ${paymentErrors.expiry ? 'border-red-500' : 'border-gray-200'}`}
+                                            />
+                                            {paymentErrors.expiry && <p className="text-xs text-red-500 mt-1">{paymentErrors.expiry}</p>}
                                         </div>
                                         <div className="w-1/2">
                                             <label className="block text-xs font-semibold text-gray-500 mb-1">CVV</label>
-                                            <input type="text" placeholder="123" className="w-full p-2.5 border border-gray-200 rounded-lg text-sm outline-none focus:border-blue-500" />
+                                            <input
+                                                type="text"
+                                                name="cvv"
+                                                value={cardDetails.cvv}
+                                                onChange={handleCardInputChange}
+                                                maxLength="3"
+                                                placeholder="123"
+                                                className={`w-full p-2.5 border rounded-lg text-sm outline-none focus:border-blue-500 ${paymentErrors.cvv ? 'border-red-500' : 'border-gray-200'}`}
+                                            />
+                                            {paymentErrors.cvv && <p className="text-xs text-red-500 mt-1">{paymentErrors.cvv}</p>}
                                         </div>
                                     </div>
                                 </div>
@@ -416,7 +521,7 @@ const BikeDetailsPage = () => {
                             <button
                                 onClick={handlePaymentAndBooking}
                                 disabled={isProcessingPayment}
-                                className="w-full py-3.5 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-lg flex justify-center items-center gap-2"
+                                className="w-full py-3.5 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-lg flex justify-center items-center gap-2 disabled:bg-gray-400"
                             >
                                 {isProcessingPayment ? (
                                     <>

@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authorization.AuthorizationDecision;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,86 +40,80 @@ public class SecurityConfiguration {
         log.info("Configuring Spring Security for Rydlo");
 
         http
-     // Stateless REST API
-        .cors(org.springframework.security.config.Customizer.withDefaults())
-        .csrf(csrf -> csrf.disable())
-        .sessionManagement(session ->
-            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        )
-        // Handle 403 Forbidden errors
-        .exceptionHandling(ex -> ex
-            .accessDeniedHandler(accessDeniedHandler)
-        )
+                // Stateless REST API
+                .cors(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // Handle 403 Forbidden errors
+                .exceptionHandling(ex -> ex
+                        .accessDeniedHandler(accessDeniedHandler))
 
-        .authorizeHttpRequests(auth -> auth
+                .authorizeHttpRequests(auth -> auth
 
-            // ===== PUBLIC =====
-            .requestMatchers(
-                "/auth/**",
-                "/auth/login",
-                "/auth/forgot-password",
-                "/auth/verify-otp",
-                "/auth/reset-password",
-                "/users/register",
-                "/v3/api-docs/**",
-                "/swagger-ui/**",
-                "/swagger-ui.html"
-            ).permitAll()
+                        // ===== PUBLIC =====
+                        .requestMatchers(
+                                "/auth/**",
+                                "/auth/login",
+                                "/auth/forgot-password",
+                                "/auth/verify-otp",
+                                "/auth/reset-password",
+                                "/users/register",
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html")
+                        .permitAll()
 
-            // CORS preflight
-            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // CORS preflight
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-            // ===== BIKES =====
-            // Anyone can view/search bikes
-            .requestMatchers(HttpMethod.GET, "/bikes/**").permitAll()
-            .requestMatchers(HttpMethod.POST, "/bikes/available").permitAll()
-            .requestMatchers(HttpMethod.POST, "/bikes/*/price-preview").permitAll()
+                        // ===== BIKES =====
+                        // Anyone can view/search bikes
+                        .requestMatchers(HttpMethod.GET, "/bikes/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/bikes/available").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/bikes/*/price-preview").permitAll()
 
-            // Only OWNER can create/update bikes
-            .requestMatchers(HttpMethod.POST, "/bikes/**").hasAuthority("ROLE_OWNER")
-            .requestMatchers(HttpMethod.PUT, "/bikes/**").hasAuthority("ROLE_OWNER")
-            .requestMatchers(HttpMethod.PATCH, "/bikes/**").hasAuthority("ROLE_OWNER")
-            .requestMatchers(HttpMethod.DELETE, "/bikes/**").hasAuthority("ROLE_OWNER")
-            
-            // ===== BOOKINGS =====
-            
-            // ===== BOOKINGS =====
-            
-            .requestMatchers(HttpMethod.POST, "/bookings/{bookingId}/cancel").access((authentication, context) -> 
-                new org.springframework.security.authorization.AuthorizationDecision(
-                    authentication.get().getAuthorities().stream()
-                        .anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER") || a.getAuthority().equals("ROLE_OWNER"))
-                )
-            )
-            
-            // ======Transactions======
+                        // Only OWNER can create/update bikes
+                        .requestMatchers(HttpMethod.POST, "/bikes/**").hasAuthority("ROLE_OWNER")
+                        .requestMatchers(HttpMethod.PUT, "/bikes/**").hasAuthority("ROLE_OWNER")
+                        .requestMatchers(HttpMethod.PATCH, "/bikes/**").hasAuthority("ROLE_OWNER")
+                        .requestMatchers(HttpMethod.DELETE, "/bikes/**").hasAuthority("ROLE_OWNER")
 
-            .requestMatchers(HttpMethod.GET, "/transactions/my").hasAuthority("ROLE_CUSTOMER")
-            // ===== CUSTOMER =====
-            .requestMatchers("/customers/**")
-            .hasAuthority("ROLE_CUSTOMER")
+                        // ===== BOOKINGS =====
 
-            // ===== OWNER =====
-            .requestMatchers("/owners/**")
-            .hasAuthority("ROLE_OWNER")
+                        // ===== BOOKINGS =====
 
-            // ===== BOOKINGS =====
-            .requestMatchers("/bookings/**")
-            .authenticated()
+                        .requestMatchers(HttpMethod.POST, "/bookings/{bookingId}/cancel")
+                        .access((authentication, context) -> new AuthorizationDecision(
+                                authentication.get().getAuthorities().stream()
+                                        .anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER")
+                                                || a.getAuthority().equals("ROLE_OWNER"))))
 
-            // ===== ADMIN =====
-            .requestMatchers("/admin/**")
-            .hasAuthority("ROLE_ADMIN")
+                        // ======Transactions======
 
-            // ===== EVERYTHING ELSE =====
-            .anyRequest().authenticated()
-        )
+                        .requestMatchers(HttpMethod.GET, "/transactions/my").hasAuthority("ROLE_CUSTOMER")
+                        // ===== CUSTOMER =====
+                        .requestMatchers("/customers/**")
+                        .hasAuthority("ROLE_CUSTOMER")
 
-        // JWT verification
-        .addFilterBefore(
-            jwtFilter,
-            UsernamePasswordAuthenticationFilter.class
-        );
+                        // ===== OWNER =====
+                        .requestMatchers("/owners/**")
+                        .hasAuthority("ROLE_OWNER")
+
+                        // ===== BOOKINGS =====
+                        .requestMatchers("/bookings/**")
+                        .authenticated()
+
+                        // ===== ADMIN =====
+                        .requestMatchers("/admin/**")
+                        .hasAuthority("ROLE_ADMIN")
+
+                        // ===== EVERYTHING ELSE =====
+                        .anyRequest().authenticated())
+
+                // JWT verification
+                .addFilterBefore(
+                        jwtFilter,
+                        UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -129,15 +130,15 @@ public class SecurityConfiguration {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @Bean
-    org.springframework.web.cors.CorsConfigurationSource corsConfigurationSource() {
-        org.springframework.web.cors.CorsConfiguration configuration = new org.springframework.web.cors.CorsConfiguration();
-        configuration.setAllowedOrigins(java.util.List.of("http://localhost:5173"));
-        configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(java.util.List.of("Authorization", "Content-Type"));
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
-        org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, MapPin, IndianRupee, Bike, X, Save, Search, Loader2, Calendar, User, CreditCard, Clock, Home } from 'lucide-react';
 import api from '../api/axios';
+
 import { useNavigate, Link } from 'react-router-dom';
 
 const OwnerDashboard = () => {
@@ -13,6 +14,12 @@ const OwnerDashboard = () => {
     const [actionLoading, setActionLoading] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [editingBike, setEditingBike] = useState(null);
+
+    // End Ride State
+    const [showEndRideModal, setShowEndRideModal] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState(null);
+    const [finalKm, setFinalKm] = useState('');
+    const [endRideSummary, setEndRideSummary] = useState(null);
 
     // Form State
     const [formData, setFormData] = useState({
@@ -158,6 +165,41 @@ const OwnerDashboard = () => {
         } finally {
             setActionLoading(false);
         }
+
+    };
+
+    const openEndRideModal = (booking) => {
+        setSelectedBooking(booking);
+        setFinalKm('');
+        setEndRideSummary(null);
+        setShowEndRideModal(true);
+    };
+
+    const handleEndRide = async (e) => {
+        e.preventDefault();
+        setActionLoading(true);
+        try {
+            const payload = {
+                bookingId: selectedBooking.id,
+                finalKm: parseInt(finalKm)
+            };
+            const response = await api.post(`/bookings/${selectedBooking.id}/drop-off`, payload);
+            setEndRideSummary(response.data);
+            alert("Ride Ended Successfully!");
+            // Don't close immediately, let them see summary
+        } catch (error) {
+            console.error("End ride failed:", error);
+            alert("Failed to end ride: " + (error.response?.data?.message || error.message));
+        } finally {
+            setActionLoading(false);
+        }
+    };
+
+    const closeEndRideModal = () => {
+        setShowEndRideModal(false);
+        setEndRideSummary(null);
+        setSelectedBooking(null);
+        fetchBookings(); // Refresh list
     };
 
     const openAddModal = () => {
@@ -289,9 +331,9 @@ const OwnerDashboard = () => {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {bikes.map(bike => (
                                 <div key={bike.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition group border border-gray-100">
-                                    <div className="h-40 bg-gray-100 flex items-center justify-center relative">
-                                        <Bike className="w-16 h-16 text-gray-400 opacity-50" />
-                                        <span className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-blue-800 uppercase border border-blue-50">
+                                    <div className="h-40 bg-gray-100 flex items-center justify-center relative overflow-hidden">
+
+                                        <span className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-blue-800 uppercase border border-blue-50 shadow-sm">
                                             {bike.bikeType}
                                         </span>
                                     </div>
@@ -385,6 +427,14 @@ const OwnerDashboard = () => {
                                                     >
                                                         Cancel
                                                     </button>
+                                                    {(booking.bookingStatus === 'BOOKED' || booking.bookingStatus === 'ONGOING') && (
+                                                        <button
+                                                            onClick={() => openEndRideModal(booking)}
+                                                            className="ml-2 px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 font-medium transition"
+                                                        >
+                                                            End Ride
+                                                        </button>
+                                                    )}
                                                 </td>
                                             </tr>
                                         ))}
@@ -564,6 +614,90 @@ const OwnerDashboard = () => {
                                 {actionLoading ? <Loader2 className="animate-spin w-5 h-5" /> : <><Save className="w-5 h-5" /> {editingBike ? 'Update Bike' : 'Save Bike'}</>}
                             </button>
                         </form>
+                    </div>
+                </div>
+            )}
+
+            {/* End Ride Modal */}
+            {showEndRideModal && (
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+                    <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl animate-in fade-in zoom-in duration-200 p-6">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-xl font-bold text-gray-900">End Ride</h2>
+                            {!endRideSummary && (
+                                <button onClick={() => setShowEndRideModal(false)} className="text-gray-400 hover:text-gray-600">
+                                    <X className="w-5 h-5" />
+                                </button>
+                            )}
+                        </div>
+
+                        {!endRideSummary ? (
+                            <form onSubmit={handleEndRide} className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Final Odometer Reading (KM)</label>
+                                    <input
+                                        type="number"
+                                        required
+                                        min="0"
+                                        value={finalKm}
+                                        onChange={(e) => setFinalKm(e.target.value)}
+                                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
+                                        placeholder="Enter final reading"
+                                    />
+                                    <p className="text-xs text-gray-500 mt-2">
+                                        Selected Bike: <strong>{selectedBooking?.bikeModel}</strong> ({selectedBooking?.bikeNumber})
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={actionLoading}
+                                    className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition flex justify-center items-center gap-2"
+                                >
+                                    {actionLoading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Complete Ride'}
+                                </button>
+                            </form>
+                        ) : (
+                            <div className="space-y-4">
+                                <div className="bg-green-50 p-4 rounded-xl border border-green-100 text-center">
+                                    <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                                        <IndianRupee className="w-6 h-6 text-green-600" />
+                                    </div>
+                                    <h3 className="text-green-800 font-bold text-lg">Ride Completed!</h3>
+                                    <p className="text-green-600 text-sm">Summary generated successfully</p>
+                                </div>
+
+                                <div className="space-y-2 text-sm text-gray-600">
+                                    <div className="flex justify-between">
+                                        <span>Total Distance</span>
+                                        <span className="font-medium text-gray-900">{endRideSummary.finalKm - endRideSummary.initialKm} km</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span>Included Distance</span>
+                                        <span className="font-medium text-gray-900">{endRideSummary.includedKm} km</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span>Extra Distance</span>
+                                        <span className="font-medium text-red-600">{endRideSummary.extraKm} km</span>
+                                    </div>
+                                    <hr />
+                                    <div className="flex justify-between font-bold text-lg text-gray-900">
+                                        <span>Final Total</span>
+                                        <span>₹{endRideSummary.finalAmount}</span>
+                                    </div>
+                                    {endRideSummary.extraKmCharge > 0 && (
+                                        <p className="text-xs text-red-500 text-right">Includes ₹{endRideSummary.extraKmCharge} extra km charge</p>
+                                    )}
+                                </div>
+
+                                <button
+                                    onClick={closeEndRideModal}
+                                    className="w-full py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

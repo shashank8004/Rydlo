@@ -26,7 +26,7 @@ public class TransactionController {
 		return ResponseEntity.ok(transactionService.getMyTransactions());
 	}
 
-	// Admin only
+
 	@GetMapping
 	public ResponseEntity<List<AdminTransactionDTO>> getAllTransactions() {
 		return ResponseEntity.ok(transactionService.getAllTransactions());

@@ -1,20 +1,23 @@
 package com.rydlo.service;
 
+import java.util.List;
+
+import com.rydlo.dto.AdminBookingDTO;
 import com.rydlo.dto.CreateBookingRequestDTO;
 import com.rydlo.dto.CreateBookingResponseDTO;
 import com.rydlo.dto.DropOffRequestDTO;
 import com.rydlo.dto.DropOffResponseDTO;
-
-import jakarta.validation.Valid;
+import com.rydlo.dto.PaymentVerificationRequestDTO;
 
 public interface BookingService {
 
-	CreateBookingResponseDTO createBooking(@Valid CreateBookingRequestDTO request);
+    CreateBookingResponseDTO createBooking(CreateBookingRequestDTO request);
+    
+    DropOffResponseDTO completeRide(Long bookingId, DropOffRequestDTO request);
+    
+    List<AdminBookingDTO> getMyBookings();
+    
+    void cancelBooking(Long bookingId);
 
-	DropOffResponseDTO completeRide(Long bookingId, @Valid DropOffRequestDTO request);
-	
-	void cancelBooking(Long bookingId);
-
-	java.util.List<com.rydlo.dto.AdminBookingDTO> getMyBookings();
-
+    CreateBookingResponseDTO confirmBooking(Long bookingId, PaymentVerificationRequestDTO request);
 }

@@ -4,20 +4,19 @@ import com.rydlo.entities.Address;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.Valid;
 import lombok.Data;
 
 @Data
-public class CustomerRegDTO 
-{
+public class CustomerRegDTO {
 
-    
 	@NotBlank(message = "Driving License is Required")
-	@jakarta.validation.constraints.Pattern(regexp = "^[A-Z]{2}[0-9]{2}\\s?[0-9]{11}$", message = "Invalid Driving License format")
+	@Pattern(regexp = "^[A-Z]{2}[0-9]{2}\\s?[0-9]{11}$", message = "Invalid Driving License format")
 	private String drivingLicence;
-	
+
 	@NotNull(message = "Address is Required")
-	@jakarta.validation.Valid
+	@Valid
 	private Address address;
-	
-	
+
 }

@@ -28,7 +28,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BikeController {
 	
-	@Autowired
 	private final BikeService bikeService;
 	private final BookingService bookingService;
 	

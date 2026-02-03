@@ -13,9 +13,6 @@ const TransactionsPage = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                // If user is Admin, they might want all transactions? 
-                // For now, let's stick to "My Transactions" for Customers/Owners
-                // If we want Admin view, we can check role
                 const endpoint = user?.roles?.includes('ADMIN') ? '/transactions' : '/transactions/my';
                 const response = await api.get(endpoint);
                 setTransactions(response.data);

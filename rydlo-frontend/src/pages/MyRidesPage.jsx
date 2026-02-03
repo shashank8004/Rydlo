@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Bike, Loader2, ArrowLeft } from 'lucide-react';
 import api from '../api/axios';
+
 import { Link } from 'react-router-dom';
 
 const MyRidesPage = () => {
@@ -65,8 +66,13 @@ const MyRidesPage = () => {
                                         <tr key={b.id} className="hover:bg-gray-50 transition">
                                             <td className="p-4 text-gray-500">#{b.id}</td>
                                             <td className="p-4">
-                                                <div className="font-bold text-gray-900">{b.bikeModel}</div>
-                                                <div className="text-xs text-gray-500">{b.bikeNumber}</div>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-full h-full bg-gray-200"></div>
+                                                    <div>
+                                                        <div className="font-bold text-gray-900">{b.bikeModel}</div>
+                                                        <div className="text-xs text-gray-500">{b.bikeNumber}</div>
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td className="p-4 text-sm">
                                                 <div className="text-gray-900">From: {new Date(b.pickupDateTime).toLocaleDateString()}</div>
@@ -76,9 +82,9 @@ const MyRidesPage = () => {
                                             <td className="p-4">
                                                 <div className="flex flex-col gap-2">
                                                     <span className={`px-2 py-1 rounded text-xs font-bold w-fit ${b.bookingStatus === 'COMPLETED' ? 'bg-green-100 text-green-700' :
-                                                            b.bookingStatus === 'BOOKED' ? 'bg-blue-100 text-blue-700' :
-                                                                b.bookingStatus === 'CANCELLED' ? 'bg-red-100 text-red-700' :
-                                                                    'bg-gray-100 text-gray-700'
+                                                        b.bookingStatus === 'BOOKED' ? 'bg-blue-100 text-blue-700' :
+                                                            b.bookingStatus === 'CANCELLED' ? 'bg-red-100 text-red-700' :
+                                                                'bg-gray-100 text-gray-700'
                                                         }`}>
                                                         {b.bookingStatus}
                                                     </span>

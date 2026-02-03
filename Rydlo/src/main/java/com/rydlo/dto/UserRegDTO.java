@@ -4,6 +4,7 @@ import com.rydlo.entities.Role;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,31 +15,25 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class UserRegDTO {
-	
-	
-	@NotBlank(message="First Name is mandatory")
+
+	@NotBlank(message = "First Name is mandatory")
 	private String firstName;
 
-	@NotBlank(message="Last Name is mandatory")
+	@NotBlank(message = "Last Name is mandatory")
 	private String lastName;
-	
-	@NotBlank(message=" Email is mandatory")
+
+	@NotBlank(message = " Email is mandatory")
 	private String email;
-	
-	@NotBlank(message=" Phone is mandatory")
-	@jakarta.validation.constraints.Pattern(regexp = "^(\\+91)?[6-9][0-9]{9}$", message = "Invalid Phone Number")
+
+	@NotBlank(message = " Phone is mandatory")
+	@Pattern(regexp = "^(\\+91)?[6-9][0-9]{9}$", message = "Invalid Phone Number")
 	private String phone;
-	
-	@NotBlank(message=" Password is mandatory")
+
+	@NotBlank(message = " Password is mandatory")
 
 	private String password;
-	
-	@NotNull(message=" Role is mandatory")
+
+	@NotNull(message = " Role is mandatory")
 	private Role role;
-
-	
-	
-	
-
 
 }

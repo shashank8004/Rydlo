@@ -7,6 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,53 +24,58 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/admin")
 @RestController
 @AllArgsConstructor
-public class AdminController 
-{
-	
-	
+public class AdminController {
+
 	@Autowired
 	private final AdminService adminService;
-	
+
 	@GetMapping("/all")
-	public ResponseEntity<?> getAllUsers()
-	{
-		List <User> userList= adminService.getAllUsers();
-		
+	public ResponseEntity<?> getAllUsers() {
+		List<User> userList = adminService.getAllUsers();
+
 		return ResponseEntity.status(HttpStatus.OK).body(userList);
 	}
-	
+
+	// Add Pickup Location
+
 	@PostMapping("/add-pickup-location")
-	public ResponseEntity<?> addPickupLocation(@org.springframework.web.bind.annotation.RequestBody @Valid PickupLocationDto pikupLocationDto)
-	{
-		String msg=adminService.addPickupLocation(pikupLocationDto);
+	public ResponseEntity<?> addPickupLocation(@RequestBody @Valid PickupLocationDto pikupLocationDto) {
+		String msg = adminService.addPickupLocation(pikupLocationDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(msg);
 	}
-	
-	@org.springframework.web.bind.annotation.PutMapping("/pickup-locations/{id}")
-	public ResponseEntity<?> updatePickupLocation(@org.springframework.web.bind.annotation.PathVariable Long id, @org.springframework.web.bind.annotation.RequestBody @Valid PickupLocationDto pickupLocationDto) {
+
+	// Update Pickup Location
+
+	@PutMapping("/pickup-locations/{id}")
+	public ResponseEntity<?> updatePickupLocation(@PathVariable Long id,
+			@RequestBody @Valid PickupLocationDto pickupLocationDto) {
 		return ResponseEntity.ok(adminService.updatePickupLocation(id, pickupLocationDto));
 	}
-	
-	@org.springframework.web.bind.annotation.DeleteMapping("/pickup-locations/{id}")
-	public ResponseEntity<?> deletePickupLocation(@org.springframework.web.bind.annotation.PathVariable Long id) {
+
+	// Delete Pickup Location
+
+	@DeleteMapping("/pickup-locations/{id}")
+	public ResponseEntity<?> deletePickupLocation(@PathVariable Long id) {
 		return ResponseEntity.ok(adminService.deletePickupLocation(id));
 	}
-	
+
+	// Get All Pickup Locations
+
 	@GetMapping("/pickup-locations")
 	public ResponseEntity<?> getAllPickupLocations() {
 		return ResponseEntity.ok(adminService.getAllPickupLocations());
 	}
-	
+
 	@GetMapping("/stats")
 	public ResponseEntity<?> getDashboardStats() {
 		return ResponseEntity.ok(adminService.getDashboardStats());
 	}
-	
+
 	@GetMapping("/bikes")
 	public ResponseEntity<?> getAllBikes() {
 		return ResponseEntity.ok(adminService.getAllBikes());
 	}
-	
+
 	@GetMapping("/bookings")
 	public ResponseEntity<?> getAllBookings() {
 		return ResponseEntity.ok(adminService.getAllBookings());

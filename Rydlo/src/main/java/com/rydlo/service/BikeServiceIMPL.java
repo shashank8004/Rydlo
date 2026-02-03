@@ -32,7 +32,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BikeServiceIMPL implements BikeService {
 	
-	@Autowired
 	private final ModelMapper modelMapper;
 	private final BikeDetailsRepository bikeDetailsRepository;
 	private final PickupLocationRepository pickupLocationRepository;

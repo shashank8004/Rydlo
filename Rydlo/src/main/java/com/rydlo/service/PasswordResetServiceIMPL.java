@@ -1,5 +1,6 @@
 package com.rydlo.service;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,18 +32,20 @@ public class PasswordResetServiceIMPL implements PasswordResetService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
 
         // Generate 6 digit OTP
+        
         String otp = String.format("%06d", new Random().nextInt(999999));
         
-        // Check if token exists for user (Use ID to be safe against detached entities)
+        // Check if token exists for user 
         PasswordResetToken token = tokenRepository.findByUser_Id(user.getId()).orElse(null);
 
         if (token == null) {
+        	
             // Create new if not exists
             token = new PasswordResetToken(otp, user, 10);
         } else {
             // Update existing
             token.setOtp(otp);
-            token.setExpiryDate(java.time.LocalDateTime.now().plusMinutes(10));
+            token.setExpiryDate(LocalDateTime.now().plusMinutes(10));
         }
 
         tokenRepository.save(token);
@@ -74,7 +77,8 @@ public class PasswordResetServiceIMPL implements PasswordResetService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         
-        // Re-verify OTP to be safe (or rely on frontend flow, but safe is better)
+        // Re-verify OTP to be safe 
+        
         PasswordResetToken token = tokenRepository.findByOtpAndUser(otp, user)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid OTP"));
 

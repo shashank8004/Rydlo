@@ -11,6 +11,7 @@ import BrowseBikesPage from './pages/BrowseBikesPage';
 import MyRidesPage from './pages/MyRidesPage';
 import BikeDetailsPage from './pages/BikeDetailsPage';
 import TransactionsPage from './pages/TransactionsPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         <Route index element={<LandingPage />} />
                         <Route path="bikes" element={<BrowseBikesPage />} />
                         <Route path="bikes/:id" element={<BikeDetailsPage />} />
+                        <Route path="profile" element={<ProfilePage />} />
                     </Route>
 
                     <Route path="/login" element={<LoginPage />} />
